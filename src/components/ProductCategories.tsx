@@ -49,7 +49,7 @@ const products = [
     icon: BarChart3,
     title: "Commodity Trading",
     summary: "Perdagangan komoditas pendukung operasional industri.",
-    items: ["Membrane", "Sulfur", "Quickite & Limestone", "Coal", "Nickel"],
+    items: ["Membrane", "Sulfur", "Quicklime & Limestone", "Coal", "Nickel"],
     apps: "Industrial Supply Chain",
   },
 ];
@@ -58,11 +58,13 @@ export default function ProductCategories() {
   const [expanded, setExpanded] = useState<number | null>(null);
 
   return (
-    <section id="produk" className="py-24 md:py-32 relative">
-      <div className="container mx-auto px-4 md:px-8">
+    <section id="produk" className="py-28 md:py-36 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
+      
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         <AnimatedSection>
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-sm font-semibold text-aqua tracking-[0.15em] uppercase mb-4 block">Produk</span>
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="text-xs font-bold text-aqua tracking-[0.2em] uppercase mb-5 block">Produk</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight mb-6">
               Kategori <span className="text-gradient">Produk Unggulan</span>
             </h2>
@@ -72,36 +74,39 @@ export default function ProductCategories() {
           </div>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {products.map((p, i) => {
             const isExpanded = expanded === i;
             return (
               <AnimatedSection key={p.title} delay={i * 80}>
                 <div
-                  className={`group p-6 rounded-2xl bg-card border transition-all duration-500 cursor-pointer hover:shadow-xl hover:shadow-ocean/5 hover:-translate-y-1 ${
-                    isExpanded ? "border-aqua/40 shadow-lg shadow-aqua/10" : "border-border hover:border-ocean/30"
+                  className={`group p-7 rounded-2xl bg-card border transition-all duration-700 cursor-pointer hover:shadow-2xl hover:shadow-ocean/[0.06] hover:-translate-y-1 relative overflow-hidden ${
+                    isExpanded ? "border-aqua/30 shadow-xl shadow-aqua/[0.08]" : "border-border hover:border-ocean/25"
                   }`}
                   onClick={() => setExpanded(isExpanded ? null : i)}
                 >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-ocean/10 to-aqua/10 flex items-center justify-center group-hover:from-ocean/20 group-hover:to-aqua/20 transition-all">
-                      <p.icon className="w-6 h-6 text-ocean" />
-                    </div>
-                    <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{p.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">{p.summary}</p>
-
-                  <div className={`overflow-hidden transition-all duration-500 ${isExpanded ? "max-h-60 opacity-100 mt-4" : "max-h-0 opacity-0"}`}>
-                    <div className="pt-4 border-t border-border">
-                      <p className="text-xs font-semibold text-aqua uppercase tracking-wider mb-2">Produk</p>
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        {p.items.map((item) => (
-                          <span key={item} className="text-xs px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground font-medium">{item}</span>
-                        ))}
+                  <div className="absolute inset-0 bg-gradient-to-br from-ocean/[0.01] to-aqua/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-5">
+                      <div className="w-13 h-13 rounded-xl bg-gradient-to-br from-ocean/10 to-aqua/10 flex items-center justify-center group-hover:from-ocean/20 group-hover:to-aqua/15 group-hover:shadow-lg group-hover:shadow-ocean/10 transition-all duration-500 p-3">
+                        <p.icon className="w-6 h-6 text-ocean group-hover:text-aqua transition-colors duration-300" />
                       </div>
-                      <p className="text-xs font-semibold text-aqua uppercase tracking-wider mb-1">Aplikasi</p>
-                      <p className="text-sm text-muted-foreground">{p.apps}</p>
+                      <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-500 ${isExpanded ? "rotate-180 text-aqua" : ""}`} />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-2">{p.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{p.summary}</p>
+
+                    <div className={`overflow-hidden transition-all duration-700 ${isExpanded ? "max-h-60 opacity-100 mt-5" : "max-h-0 opacity-0"}`}>
+                      <div className="pt-5 border-t border-border/60">
+                        <p className="text-[10px] font-bold text-aqua uppercase tracking-[0.15em] mb-2.5">Produk</p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {p.items.map((item) => (
+                            <span key={item} className="text-xs px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground font-medium">{item}</span>
+                          ))}
+                        </div>
+                        <p className="text-[10px] font-bold text-aqua uppercase tracking-[0.15em] mb-1.5">Aplikasi</p>
+                        <p className="text-sm text-muted-foreground">{p.apps}</p>
+                      </div>
                     </div>
                   </div>
                 </div>

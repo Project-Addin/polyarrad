@@ -3,38 +3,40 @@ import { TestTubes, Pipette, HardHat, Wrench, Truck, Settings } from "lucide-rea
 
 const activities = [
   { icon: TestTubes, title: "Analisis Laboratorium", desc: "Pengujian sampel air dan bahan kimia untuk memastikan kualitas treatment sesuai standar." },
-  { icon: Pipette, title: "Dosing & Chemical Handling", desc: "Implementasi sistem dosing dan penanganan kimia yang aman dan efisien." },
-  { icon: HardHat, title: "Site Support", desc: "Pendampingan teknis langsung di lokasi untuk commissioning dan troubleshooting." },
-  { icon: Wrench, title: "Perawatan Sistem", desc: "Maintenance berkala pada peralatan treatment untuk menjaga performa." },
-  { icon: Truck, title: "Logistik & Supply", desc: "Pengelolaan rantai pasok kimia dari gudang hingga titik penggunaan." },
-  { icon: Settings, title: "Optimasi Proses", desc: "Evaluasi dan peningkatan berkelanjutan terhadap efisiensi sistem." },
+  { icon: Pipette, title: "Dosing & Chemical Handling", desc: "Implementasi sistem dosing dan penanganan kimia yang aman dan efisien di lapangan." },
+  { icon: HardHat, title: "Site Support", desc: "Pendampingan teknis langsung di lokasi untuk commissioning, troubleshooting, dan optimasi." },
+  { icon: Wrench, title: "Perawatan Sistem", desc: "Maintenance berkala pada peralatan treatment untuk menjaga performa dan umur pakai." },
+  { icon: Truck, title: "Logistik & Supply", desc: "Pengelolaan rantai pasok kimia dari gudang hingga titik penggunaan dengan tepat waktu." },
+  { icon: Settings, title: "Optimasi Proses", desc: "Evaluasi dan peningkatan berkelanjutan terhadap efisiensi sistem pengolahan air." },
 ];
 
 export default function TreatmentActivities() {
   return (
-    <section className="py-20 md:py-28 bg-secondary/20 relative">
-      <div className="container mx-auto px-6 md:px-10">
+    <section className="py-28 md:py-40 bg-navy relative overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.015]" style={{
+        backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--aqua)) 0.5px, transparent 0)`,
+        backgroundSize: '48px 48px'
+      }} />
+      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-ocean/4 rounded-full blur-[200px]" />
+
+      <div className="container mx-auto px-6 md:px-10 relative z-10">
         <AnimatedSection>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 md:mb-20">
-            <div>
-              <span className="text-ocean/40 text-[11px] font-semibold tracking-[0.25em] uppercase block mb-6">Aktivitas Treatment</span>
-              <h2 className="text-2xl md:text-[2rem] font-bold text-foreground leading-[1.15] max-w-md">
-                Implementasi <span className="text-gradient">di lapangan</span>
-              </h2>
-            </div>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-8 h-px bg-aqua/40" />
+            <span className="text-[11px] font-semibold text-aqua/50 tracking-[0.2em] uppercase">Aktivitas Treatment</span>
           </div>
+          <h2 className="text-3xl md:text-[2.75rem] font-bold text-white leading-[1.1] mb-16 md:mb-20 max-w-lg">
+            Implementasi <span className="text-gradient">di lapangan</span>
+          </h2>
         </AnimatedSection>
 
-        {/* Horizontal scrollable on mobile, 3-col on desktop — different layout */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 md:gap-y-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.04] rounded-2xl overflow-hidden">
           {activities.map((a, i) => (
-            <AnimatedSection key={a.title} delay={i * 60}>
-              <div className="group">
-                <div className="flex items-center gap-3 mb-3">
-                  <a.icon className="w-4 h-4 text-muted-foreground/25 group-hover:text-ocean/50 transition-colors duration-500" />
-                  <h3 className="text-[14px] font-bold text-foreground">{a.title}</h3>
-                </div>
-                <p className="text-muted-foreground/60 text-[13px] leading-[1.75] pl-7">{a.desc}</p>
+            <AnimatedSection key={a.title} delay={i * 70}>
+              <div className="group p-9 bg-navy hover:bg-navy-light transition-all duration-500">
+                <a.icon className="w-5 h-5 text-white/15 mb-6 group-hover:text-aqua/50 transition-colors duration-400" />
+                <h3 className="text-[15px] font-bold text-white/60 group-hover:text-white transition-colors mb-2">{a.title}</h3>
+                <p className="text-white/20 group-hover:text-white/35 text-[13px] leading-[1.75] transition-colors duration-400">{a.desc}</p>
               </div>
             </AnimatedSection>
           ))}

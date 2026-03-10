@@ -13,7 +13,7 @@ export default function HeroSection() {
         <img
           src={heroImage}
           alt="Industrial water treatment facility"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover animate-hero-zoom"
         />
         {/* Navy overlay for brand consistency */}
         <div

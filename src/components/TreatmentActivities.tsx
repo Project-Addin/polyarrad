@@ -12,31 +12,25 @@ const activities = [
 
 export default function TreatmentActivities() {
   return (
-    <section className="py-28 md:py-40 bg-navy relative overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.015]" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--aqua)) 0.5px, transparent 0)`,
-        backgroundSize: '48px 48px'
-      }} />
-      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-ocean/4 rounded-full blur-[200px]" />
-
+    <section className="py-28 md:py-40 bg-light-blue relative overflow-hidden">
       <div className="container mx-auto px-6 md:px-10 relative z-10">
         <AnimatedSection>
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-8 h-px bg-aqua/40" />
-            <span className="text-[11px] font-semibold text-aqua/50 tracking-[0.2em] uppercase">Aktivitas Treatment</span>
+            <div className="w-8 h-px bg-ocean/40" />
+            <span className="section-label">Aktivitas Treatment</span>
           </div>
-          <h2 className="text-3xl md:text-[2.75rem] font-bold text-white leading-[1.1] mb-16 md:mb-20 max-w-lg">
+          <h2 className="text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.1] mb-16 md:mb-20 max-w-lg">
             Implementasi <span className="text-gradient">di lapangan</span>
           </h2>
         </AnimatedSection>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.04] rounded-2xl overflow-hidden">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border/60 rounded-2xl overflow-hidden border border-border/50">
           {activities.map((a, i) => (
             <AnimatedSection key={a.title} delay={i * 70}>
-              <div className="group p-9 bg-navy hover:bg-navy-light transition-all duration-500">
-                <a.icon className="w-5 h-5 text-white/15 mb-6 group-hover:text-aqua/50 transition-colors duration-400" />
-                <h3 className="text-[15px] font-bold text-white/60 group-hover:text-white transition-colors mb-2">{a.title}</h3>
-                <p className="text-white/20 group-hover:text-white/35 text-[13px] leading-[1.75] transition-colors duration-400">{a.desc}</p>
+              <div className="group p-9 bg-card hover:bg-secondary/40 transition-all duration-500">
+                <a.icon className="w-5 h-5 text-ocean/40 mb-6 group-hover:text-ocean transition-colors duration-400" />
+                <h3 className="text-[15px] font-bold text-foreground/80 group-hover:text-foreground transition-colors mb-2">{a.title}</h3>
+                <p className="text-muted-foreground text-[13px] leading-[1.75] transition-colors duration-400">{a.desc}</p>
               </div>
             </AnimatedSection>
           ))}

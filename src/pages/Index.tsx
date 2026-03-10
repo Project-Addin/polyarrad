@@ -8,6 +8,7 @@ import TechnicalServices from "@/components/TechnicalServices";
 import TreatmentActivities from "@/components/TreatmentActivities";
 import VisionMission from "@/components/VisionMission";
 import Certifications from "@/components/Certifications";
+import LocationSection from "@/components/LocationSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -24,6 +25,7 @@ const Index = () => {
       <TreatmentActivities />
       <VisionMission />
       <Certifications />
+      <LocationSection />
       <ContactSection />
       <Footer />
     </div>

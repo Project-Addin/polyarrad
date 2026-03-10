@@ -9,12 +9,13 @@ export default {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1280px",
       },
     },
     extend: {
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
+        sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['"Space Grotesk"', '"Inter"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -59,7 +60,7 @@ export default {
           DEFAULT: "hsl(var(--aqua))",
           glow: "hsl(var(--aqua-glow))",
         },
-        "cool-gray": "hsl(var(--cool-gray))",
+        slate: "hsl(var(--slate))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

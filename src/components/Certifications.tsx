@@ -10,35 +10,25 @@ const certs = [
 
 export default function Certifications() {
   return (
-    <section id="sertifikasi" className="py-32 md:py-40 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/15 to-background" />
-
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
+    <section id="sertifikasi" className="py-28 md:py-40 bg-secondary/30 relative">
+      <div className="container mx-auto px-6 md:px-10">
         <AnimatedSection>
-          <div className="text-center max-w-2xl mx-auto mb-20">
-            <span className="text-[11px] font-bold text-aqua tracking-[0.25em] uppercase mb-6 block">Sertifikasi</span>
-            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold text-foreground leading-tight mb-5">
-              Jaminan Mutu & <span className="text-gradient">Kepercayaan</span>
-            </h2>
-            <div className="section-divider mb-6" />
-            <p className="text-muted-foreground text-[17px]">
-              Sertifikasi dan akreditasi yang menjadi bukti komitmen kami terhadap kualitas dan standar internasional.
-            </p>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-8 h-px bg-ocean/40" />
+            <span className="section-label">Sertifikasi</span>
           </div>
+          <h2 className="text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.1] mb-16 md:mb-20 max-w-lg">
+            Jaminan mutu & <span className="text-gradient">kepercayaan</span>
+          </h2>
         </AnimatedSection>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 rounded-2xl overflow-hidden border border-border/50 max-w-5xl">
           {certs.map((c, i) => (
-            <AnimatedSection key={c.name} delay={i * 100}>
-              <div className="group text-center p-9 lg:p-10 rounded-2xl bg-card border border-border/80 hover:border-ocean/20 transition-all duration-500 hover:shadow-xl hover:shadow-ocean/[0.06] hover:-translate-y-1 relative overflow-hidden card-premium">
-                <div className="absolute inset-0 bg-gradient-to-br from-ocean/[0.01] to-aqua/[0.015] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative z-10">
-                  <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-ocean/10 to-aqua/8 flex items-center justify-center mb-7 group-hover:shadow-lg group-hover:shadow-ocean/10 transition-all duration-400">
-                    <c.icon className="w-7 h-7 text-ocean group-hover:text-aqua transition-colors duration-400" />
-                  </div>
-                  <h3 className="text-[17px] font-bold text-foreground mb-3 tracking-tight">{c.name}</h3>
-                  <p className="text-[14px] text-muted-foreground leading-[1.7]">{c.desc}</p>
-                </div>
+            <AnimatedSection key={c.name} delay={i * 80}>
+              <div className="group p-9 bg-card hover:bg-secondary/30 transition-all duration-500">
+                <c.icon className="w-6 h-6 text-ocean/50 mb-6 group-hover:text-ocean transition-colors duration-400" />
+                <h3 className="text-[16px] font-bold text-foreground mb-2">{c.name}</h3>
+                <p className="text-[13px] text-muted-foreground leading-[1.75]">{c.desc}</p>
               </div>
             </AnimatedSection>
           ))}

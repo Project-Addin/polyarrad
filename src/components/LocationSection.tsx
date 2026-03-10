@@ -1,6 +1,5 @@
 import AnimatedSection from "./AnimatedSection";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import facilityImage from "@/assets/facility-warehouse.jpg";
 
 export default function LocationSection() {
   return (
@@ -16,24 +15,6 @@ export default function LocationSection() {
             <h2 className="text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.1] max-w-lg mx-auto">
               Kunjungi <span className="text-gradient">kantor kami</span>
             </h2>
-          </div>
-        </AnimatedSection>
-
-        {/* Facility image strip */}
-        <AnimatedSection>
-          <div className="relative rounded-xl overflow-hidden aspect-[21/9] mb-12">
-            <img
-              src={facilityImage}
-              alt="Gudang penyimpanan bahan kimia ARRAD Chemicals"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(180deg, transparent 40%, hsl(var(--background) / 0.6) 100%)",
-              }}
-            />
           </div>
         </AnimatedSection>
 

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -52,14 +52,14 @@ export default function HeroSection() {
             <span className="text-gradient">Industri</span>
           </h1>
 
-          <p className="text-[17px] md:text-lg text-white/30 max-w-xl mb-12 leading-relaxed font-light animate-reveal-up" style={{ animationDelay: "0.2s" }}>
+          <p className="text-[17px] md:text-lg text-white/30 max-w-xl mb-14 leading-relaxed font-light animate-reveal-up" style={{ animationDelay: "0.2s" }}>
             Sejak 1998, kami menghadirkan produk kimia spesialti dan layanan teknis profesional untuk pengolahan air & air limbah di berbagai sektor industri Indonesia.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 animate-reveal-up" style={{ animationDelay: "0.3s" }}>
+          <div className="flex flex-col sm:flex-row gap-5 animate-reveal-up" style={{ animationDelay: "0.3s" }}>
             <Button
               size="lg"
-              className="bg-white text-foreground font-semibold text-[14px] hover:bg-white/90 transition-all duration-300 border-0 px-8 h-13 tracking-wide rounded-full group"
+              className="bg-ocean text-white font-semibold text-[14px] hover:bg-ocean/90 transition-all duration-300 border-0 px-8 h-12 tracking-wide rounded-lg group shadow-lg shadow-ocean/20"
               onClick={() => document.getElementById("kontak")?.scrollIntoView({ behavior: "smooth" })}
             >
               Konsultasi Tim Kami
@@ -68,16 +68,17 @@ export default function HeroSection() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white/10 text-white/60 hover:text-white hover:bg-white/[0.03] hover:border-white/20 font-medium text-[14px] px-8 h-13 bg-transparent transition-all duration-300 rounded-full"
+              className="border-white/15 text-white/50 hover:text-white hover:bg-white/[0.05] hover:border-white/25 font-medium text-[14px] px-8 h-12 bg-transparent transition-all duration-300 rounded-lg"
               onClick={() => document.getElementById("produk")?.scrollIntoView({ behavior: "smooth" })}
             >
               Jelajahi Solusi
+              <ChevronDown className="w-4 h-4 ml-1" />
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Bottom fade */}
+      {/* Bottom fade to light background */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );

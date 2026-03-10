@@ -61,6 +61,8 @@ export default {
           glow: "hsl(var(--aqua-glow))",
         },
         slate: "hsl(var(--slate))",
+        "light-blue": "hsl(var(--light-blue))",
+        "soft-gray": "hsl(var(--soft-gray))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

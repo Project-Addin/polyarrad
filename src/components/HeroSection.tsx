@@ -1,43 +1,42 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import heroImage from "@/assets/hero-water-treatment.jpg";
 
 export default function HeroSection() {
   return (
     <section
       id="beranda"
-      className="relative min-h-[100vh] flex items-end pb-28 md:pb-36 overflow-hidden bg-navy"
+      className="relative min-h-[100vh] flex items-end pb-28 md:pb-36 overflow-hidden"
     >
-      {/* Ambient gradient lighting — refined, no particles */}
+      {/* Background image with overlay */}
       <div className="absolute inset-0">
-        <div
-          className="absolute top-[10%] left-[5%] w-[700px] h-[700px] rounded-full blur-[260px] animate-pulse-soft"
-          style={{ background: "hsl(var(--ocean) / 0.08)" }}
+        <img
+          src={heroImage}
+          alt="Industrial water treatment facility"
+          className="absolute inset-0 w-full h-full object-cover"
         />
+        {/* Navy overlay for brand consistency */}
         <div
-          className="absolute bottom-[15%] right-[10%] w-[500px] h-[500px] rounded-full blur-[200px] animate-pulse-soft"
-          style={{
-            background: "hsl(var(--aqua) / 0.05)",
-            animationDelay: "3s",
-          }}
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(135deg, hsl(var(--navy) / 0.88) 0%, hsl(var(--navy) / 0.75) 50%, hsl(var(--navy) / 0.85) 100%)" }}
         />
+        {/* Subtle ocean tint */}
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full blur-[300px] animate-water-drift"
-          style={{ background: "hsl(var(--ocean) / 0.04)" }}
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(180deg, hsl(var(--ocean) / 0.08) 0%, transparent 40%, hsl(var(--ocean) / 0.05) 100%)" }}
         />
+      </div>
 
-        {/* Subtle water texture overlay */}
+      {/* Ambient lighting accents */}
+      <div className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `
-              radial-gradient(ellipse 600px 200px at 20% 80%, hsl(var(--aqua) / 0.3), transparent),
-              radial-gradient(ellipse 400px 300px at 75% 30%, hsl(var(--ocean) / 0.2), transparent)
-            `,
-          }}
+          className="absolute top-[15%] left-[8%] w-[500px] h-[500px] rounded-full blur-[200px] animate-pulse-soft"
+          style={{ background: "hsl(var(--ocean) / 0.1)" }}
         />
-
-        {/* Single subtle horizontal line */}
-        <div className="absolute top-[62%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.04] to-transparent" />
+        <div
+          className="absolute bottom-[20%] right-[12%] w-[400px] h-[400px] rounded-full blur-[180px] animate-pulse-soft"
+          style={{ background: "hsl(var(--aqua) / 0.06)", animationDelay: "3s" }}
+        />
       </div>
 
       {/* Content */}
@@ -62,10 +61,11 @@ export default function HeroSection() {
           </h1>
 
           <p
-            className="text-[16px] md:text-[17px] text-white/35 max-w-lg mb-12 leading-[1.75] font-light animate-reveal-up"
+            className="text-[16px] md:text-[17px] text-white/40 max-w-lg mb-12 leading-[1.75] font-light animate-reveal-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Produsen dan distributor bahan kimia spesialti untuk sistem pengolahan air & air limbah sejak 1998.
+            Produsen dan distributor bahan kimia spesialti untuk sistem
+            pengolahan air & air limbah sejak 1998.
           </p>
 
           <div
@@ -74,11 +74,9 @@ export default function HeroSection() {
           >
             <Button
               size="lg"
-              className="bg-ocean text-white font-semibold text-[13px] hover:bg-ocean/90 transition-all duration-300 border-0 px-7 h-11 tracking-wide rounded-lg group shadow-lg shadow-ocean/20"
+              className="bg-ocean text-white font-semibold text-[13px] hover:bg-ocean/90 transition-all duration-300 border-0 px-7 h-12 tracking-wide rounded-lg group shadow-lg shadow-ocean/20"
               onClick={() =>
-                document
-                  .getElementById("kontak")
-                  ?.scrollIntoView({ behavior: "smooth" })
+                document.getElementById("kontak")?.scrollIntoView({ behavior: "smooth" })
               }
             >
               Konsultasi Tim Kami
@@ -87,11 +85,9 @@ export default function HeroSection() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white/10 text-white/45 hover:text-white/80 hover:bg-white/[0.04] hover:border-white/20 font-medium text-[13px] px-7 h-11 bg-transparent transition-all duration-300 rounded-lg"
+              className="border-white/10 text-white/50 hover:text-white/80 hover:bg-white/[0.04] hover:border-white/20 font-medium text-[13px] px-7 h-12 bg-transparent transition-all duration-300 rounded-lg"
               onClick={() =>
-                document
-                  .getElementById("produk")
-                  ?.scrollIntoView({ behavior: "smooth" })
+                document.getElementById("produk")?.scrollIntoView({ behavior: "smooth" })
               }
             >
               Lihat Solusi

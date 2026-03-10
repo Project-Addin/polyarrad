@@ -156,15 +156,34 @@
   100% { background-position: 200% 0; }
 }
 @keyframes hero-zoom {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.08); }
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.06) translate(-0.5%, -0.3%); }
+  100% { transform: scale(1.1) translate(0.3%, -0.5%); }
+}
+@keyframes caustic-1 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(40px, -30px) rotate(0.5deg); }
+  66% { transform: translate(-20px, 20px) rotate(-0.3deg); }
+}
+@keyframes caustic-2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  40% { transform: translate(-35px, 25px) rotate(-0.4deg); }
+  70% { transform: translate(25px, -15px) rotate(0.3deg); }
+}
+@keyframes shimmer-line {
+  0% { background-position: -200% 0; opacity: 0.03; }
+  50% { opacity: 0.08; }
+  100% { background-position: 200% 0; opacity: 0.03; }
 }
 
 .animate-water-drift { animation: water-drift 30s ease-in-out infinite; }
 .animate-pulse-soft { animation: pulse-soft 6s ease-in-out infinite; }
 .animate-marquee { animation: marquee 45s linear infinite; }
 .animate-reveal-up { animation: reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.animate-hero-zoom { animation: hero-zoom 25s ease-in-out alternate infinite; }
+.animate-hero-zoom { animation: hero-zoom 30s ease-in-out alternate infinite; }
+.animate-caustic-1 { animation: caustic-1 20s ease-in-out infinite; }
+.animate-caustic-2 { animation: caustic-2 25s ease-in-out infinite; }
+.animate-shimmer-line { animation: shimmer-line 8s ease-in-out infinite; }
 
 .reveal-on-scroll {
   opacity: 0;

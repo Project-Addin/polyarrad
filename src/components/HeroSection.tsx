@@ -8,17 +8,20 @@ export default function HeroSection() {
       id="beranda"
       className="relative min-h-[100vh] flex items-end pb-28 md:pb-36 overflow-hidden"
     >
-      {/* Background image with overlay */}
+      {/* Background image with cinematic zoom + parallax */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Industrial water treatment facility"
-          className="absolute inset-0 w-full h-full object-cover animate-hero-zoom"
-        />
+        <div className="absolute inset-[-8%] animate-hero-zoom">
+          <img
+            src={heroImage}
+            alt="Industrial water treatment facility"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
         {/* Navy overlay for brand consistency */}
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(135deg, hsl(var(--navy) / 0.88) 0%, hsl(var(--navy) / 0.75) 50%, hsl(var(--navy) / 0.85) 100%)" }}
+          style={{ background: "linear-gradient(135deg, hsl(var(--navy) / 0.90) 0%, hsl(var(--navy) / 0.78) 50%, hsl(var(--navy) / 0.88) 100%)" }}
         />
         {/* Subtle ocean tint */}
         <div
@@ -27,7 +30,33 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Ambient lighting accents */}
+      {/* Flowing water-light overlay */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Slow drifting caustic light 1 */}
+        <div
+          className="absolute -top-[20%] -left-[10%] w-[120%] h-[140%] opacity-[0.04] animate-caustic-1"
+          style={{
+            background: "radial-gradient(ellipse 600px 400px at 30% 40%, hsl(var(--ocean)), transparent 70%)",
+          }}
+        />
+        {/* Slow drifting caustic light 2 */}
+        <div
+          className="absolute -top-[10%] -right-[15%] w-[120%] h-[130%] opacity-[0.03] animate-caustic-2"
+          style={{
+            background: "radial-gradient(ellipse 500px 350px at 65% 55%, hsl(var(--aqua)), transparent 70%)",
+          }}
+        />
+        {/* Water reflection shimmer line */}
+        <div
+          className="absolute bottom-[15%] left-0 right-0 h-[1px] opacity-[0.06] animate-shimmer-line"
+          style={{
+            background: "linear-gradient(90deg, transparent 0%, hsl(var(--aqua)) 20%, hsl(var(--ocean)) 50%, hsl(var(--aqua)) 80%, transparent 100%)",
+            backgroundSize: "200% 100%",
+          }}
+        />
+      </div>
+
+      {/* Ambient glow accents */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute top-[15%] left-[8%] w-[500px] h-[500px] rounded-full blur-[200px] animate-pulse-soft"
@@ -97,8 +126,11 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Bottom transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent" />
+      {/* Clean dark bottom transition */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-48"
+        style={{ background: "linear-gradient(to top, hsl(var(--navy)) 0%, hsl(var(--navy) / 0.6) 40%, transparent 100%)" }}
+      />
     </section>
   );
 }

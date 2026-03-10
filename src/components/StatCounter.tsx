@@ -27,10 +27,10 @@ export default function StatCounter({ end, suffix = "", prefix = "", label, dura
 
   return (
     <div ref={ref} className="text-center relative z-10">
-      <div className="text-4xl md:text-5xl font-extrabold text-gradient mb-2 tracking-tight">
+      <div className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gradient mb-2 tracking-tighter">
         {prefix}{count}{suffix}
       </div>
-      <div className="text-sm text-white/50 font-medium tracking-wide">{label}</div>
+      <div className="text-[13px] text-white/40 font-medium tracking-wide">{label}</div>
     </div>
   );
 }

@@ -48,53 +48,59 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-navy flex items-center justify-center px-6">
+    <div className="min-h-screen bg-[#f4f6f9] flex items-center justify-center px-6">
       <div className="w-full max-w-sm">
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/[0.04] border border-white/[0.06] mb-6">
-            <Lock className="w-6 h-6 text-white/40" />
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 mb-5">
+            <Lock className="w-5 h-5 text-primary" />
           </div>
-          <h1 className="text-2xl font-bold text-white font-heading">Admin Login</h1>
-          <p className="text-white/30 text-sm mt-2">ARRAD Chemicals Dashboard</p>
+          <h1 className="text-2xl font-bold text-foreground font-heading">Admin Login</h1>
+          <p className="text-muted-foreground text-sm mt-1.5">ARRAD Chemicals Dashboard</p>
         </div>
 
-        <form onSubmit={handleLogin} className="space-y-4">
-          {error && (
-            <div className="flex items-center gap-3 bg-destructive/10 border border-destructive/20 rounded-xl p-3">
-              <AlertCircle className="w-4 h-4 text-destructive flex-shrink-0" />
-              <p className="text-destructive text-sm">{error}</p>
+        <div className="bg-white rounded-2xl border border-border/60 shadow-sm p-7">
+          <form onSubmit={handleLogin} className="space-y-5">
+            {error && (
+              <div className="flex items-center gap-3 bg-destructive/5 border border-destructive/15 rounded-lg p-3">
+                <AlertCircle className="w-4 h-4 text-destructive flex-shrink-0" />
+                <p className="text-destructive text-sm">{error}</p>
+              </div>
+            )}
+            <div>
+              <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Email</label>
+              <Input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="admin@arradchemicals.co.id"
+                className="h-11 text-sm bg-[#f8f9fb] border-border/60 focus-visible:ring-primary/30"
+              />
             </div>
-          )}
-          <div>
-            <label className="text-[11px] text-white/25 mb-2 block font-medium tracking-[0.15em] uppercase">Email</label>
-            <Input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@arradchemicals.co.id"
-              className="bg-white/[0.03] border-white/[0.06] text-white placeholder:text-white/15 focus-visible:ring-ocean/30 h-11 text-sm"
-            />
-          </div>
-          <div>
-            <label className="text-[11px] text-white/25 mb-2 block font-medium tracking-[0.15em] uppercase">Password</label>
-            <Input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              className="bg-white/[0.03] border-white/[0.06] text-white placeholder:text-white/15 focus-visible:ring-ocean/30 h-11 text-sm"
-            />
-          </div>
-          <Button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-white text-foreground font-semibold h-11 hover:bg-white/90 rounded-full text-sm"
-          >
-            {loading ? "Masuk..." : "Masuk"}
-          </Button>
-        </form>
+            <div>
+              <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Password</label>
+              <Input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="h-11 text-sm bg-[#f8f9fb] border-border/60 focus-visible:ring-primary/30"
+              />
+            </div>
+            <Button
+              type="submit"
+              disabled={loading}
+              className="w-full h-11 text-sm font-semibold rounded-lg"
+            >
+              {loading ? "Masuk..." : "Masuk"}
+            </Button>
+          </form>
+        </div>
+
+        <p className="text-center text-xs text-muted-foreground/50 mt-6">
+          © {new Date().getFullYear()} ARRAD Chemicals
+        </p>
       </div>
     </div>
   );

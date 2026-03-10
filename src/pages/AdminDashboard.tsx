@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { LogOut, Mail, Building2, Phone, Clock, Eye, ChevronDown, ChevronUp } from "lucide-react";
+import { LogOut, Mail, Building2, Phone, Clock, Eye, ChevronDown, ChevronUp, Inbox } from "lucide-react";
 
 interface Inquiry {
   id: string;
@@ -30,7 +30,6 @@ export default function AdminDashboard() {
   const checkAuth = async () => {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) { navigate("/admin/login", { replace: true }); return; }
-
     const { data: isAdmin } = await supabase.rpc("has_role", { _user_id: session.user.id, _role: "admin" });
     if (!isAdmin) { await supabase.auth.signOut(); navigate("/admin/login", { replace: true }); }
   };
@@ -68,92 +67,108 @@ export default function AdminDashboard() {
   const unreadCount = inquiries.filter((i) => !i.is_read).length;
 
   return (
-    <div className="min-h-screen bg-navy">
+    <div className="min-h-screen bg-[#f4f6f9]">
       {/* Header */}
-      <header className="border-b border-white/[0.06] bg-navy-light/50 backdrop-blur-xl sticky top-0 z-50">
-        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <h1 className="text-white font-heading font-bold text-lg">ARRAD</h1>
-            <span className="text-white/20 text-xs">|</span>
-            <span className="text-white/40 text-sm">Inquiry Dashboard</span>
+      <header className="border-b border-border/60 bg-white sticky top-0 z-50">
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <h1 className="text-foreground font-heading font-bold text-base">ARRAD</h1>
+            <span className="text-border">|</span>
+            <span className="text-muted-foreground text-sm">Inquiry Dashboard</span>
             {unreadCount > 0 && (
-              <span className="bg-ocean/20 text-ocean text-xs font-semibold px-2 py-0.5 rounded-full">
+              <span className="bg-primary/10 text-primary text-xs font-semibold px-2 py-0.5 rounded-full">
                 {unreadCount} baru
               </span>
             )}
           </div>
-          <Button variant="ghost" onClick={handleLogout} className="text-white/40 hover:text-white hover:bg-white/5 text-sm gap-2">
+          <Button variant="ghost" size="sm" onClick={handleLogout} className="text-muted-foreground hover:text-foreground gap-2">
             <LogOut className="w-4 h-4" /> Keluar
           </Button>
         </div>
       </header>
 
       {/* Content */}
-      <main className="container mx-auto px-6 py-10">
-        <div className="mb-8">
-          <h2 className="text-white text-xl font-bold font-heading">Pesan Masuk</h2>
-          <p className="text-white/30 text-sm mt-1">{inquiries.length} total pesan</p>
+      <main className="max-w-5xl mx-auto px-6 py-8">
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-4 mb-8">
+          <div className="bg-white rounded-xl border border-border/60 p-5">
+            <p className="text-xs font-medium text-muted-foreground mb-1">Total Pesan</p>
+            <p className="text-2xl font-bold text-foreground">{inquiries.length}</p>
+          </div>
+          <div className="bg-white rounded-xl border border-border/60 p-5">
+            <p className="text-xs font-medium text-muted-foreground mb-1">Belum Dibaca</p>
+            <p className="text-2xl font-bold text-primary">{unreadCount}</p>
+          </div>
+          <div className="bg-white rounded-xl border border-border/60 p-5">
+            <p className="text-xs font-medium text-muted-foreground mb-1">Sudah Dibaca</p>
+            <p className="text-2xl font-bold text-foreground">{inquiries.length - unreadCount}</p>
+          </div>
         </div>
 
+        <h2 className="text-foreground text-lg font-bold font-heading mb-4">Pesan Masuk</h2>
+
         {loading ? (
-          <div className="text-white/30 text-sm py-20 text-center">Memuat...</div>
+          <div className="text-muted-foreground text-sm py-20 text-center">Memuat...</div>
         ) : inquiries.length === 0 ? (
-          <div className="text-white/20 text-sm py-20 text-center border border-white/[0.04] rounded-2xl">
-            Belum ada pesan masuk.
+          <div className="bg-white rounded-xl border border-border/60 py-16 text-center">
+            <Inbox className="w-10 h-10 text-muted-foreground/30 mx-auto mb-3" />
+            <p className="text-muted-foreground text-sm">Belum ada pesan masuk.</p>
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {inquiries.map((inq) => (
               <div
                 key={inq.id}
-                className={`border rounded-xl transition-all duration-200 ${
+                className={`bg-white border rounded-xl transition-all duration-200 ${
                   inq.is_read
-                    ? "border-white/[0.04] bg-white/[0.01]"
-                    : "border-ocean/20 bg-ocean/[0.03]"
+                    ? "border-border/60"
+                    : "border-primary/25 ring-1 ring-primary/10"
                 }`}
               >
                 <button
                   onClick={() => toggleExpand(inq.id)}
-                  className="w-full text-left px-5 py-4 flex items-center gap-4"
+                  className="w-full text-left px-5 py-3.5 flex items-center gap-4"
                 >
-                  {!inq.is_read && <div className="w-2 h-2 rounded-full bg-ocean flex-shrink-0" />}
+                  {!inq.is_read && <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 flex-wrap">
-                      <span className="text-white font-medium text-sm">{inq.full_name}</span>
-                      <span className="text-white/15">·</span>
-                      <span className="text-white/30 text-xs flex items-center gap-1">
+                    <div className="flex items-center gap-2.5 flex-wrap">
+                      <span className="text-foreground font-medium text-sm">{inq.full_name}</span>
+                      <span className="text-muted-foreground/30">·</span>
+                      <span className="text-muted-foreground text-xs flex items-center gap-1">
                         <Building2 className="w-3 h-3" /> {inq.company_name}
                       </span>
                     </div>
-                    {inq.subject && <p className="text-white/40 text-sm mt-0.5 truncate">{inq.subject}</p>}
+                    {inq.subject && <p className="text-muted-foreground text-sm mt-0.5 truncate">{inq.subject}</p>}
                   </div>
                   <div className="flex items-center gap-3 flex-shrink-0">
-                    <span className="text-white/15 text-xs flex items-center gap-1">
+                    <span className="text-muted-foreground/60 text-xs flex items-center gap-1">
                       <Clock className="w-3 h-3" /> {formatDate(inq.created_at)}
                     </span>
                     {expandedId === inq.id ? (
-                      <ChevronUp className="w-4 h-4 text-white/20" />
+                      <ChevronUp className="w-4 h-4 text-muted-foreground/40" />
                     ) : (
-                      <ChevronDown className="w-4 h-4 text-white/20" />
+                      <ChevronDown className="w-4 h-4 text-muted-foreground/40" />
                     )}
                   </div>
                 </button>
 
                 {expandedId === inq.id && (
-                  <div className="px-5 pb-5 pt-1 border-t border-white/[0.04]">
-                    <div className="flex flex-wrap gap-4 mb-4">
-                      <span className="text-white/30 text-xs flex items-center gap-1.5">
-                        <Mail className="w-3 h-3" /> {inq.email}
+                  <div className="px-5 pb-5 pt-2 border-t border-border/40">
+                    <div className="flex flex-wrap gap-4 mb-3">
+                      <span className="text-muted-foreground text-xs flex items-center gap-1.5">
+                        <Mail className="w-3.5 h-3.5" /> {inq.email}
                       </span>
                       {inq.phone && (
-                        <span className="text-white/30 text-xs flex items-center gap-1.5">
-                          <Phone className="w-3 h-3" /> {inq.phone}
+                        <span className="text-muted-foreground text-xs flex items-center gap-1.5">
+                          <Phone className="w-3.5 h-3.5" /> {inq.phone}
                         </span>
                       )}
                     </div>
-                    <p className="text-white/50 text-sm leading-relaxed whitespace-pre-wrap">{inq.message}</p>
+                    <p className="text-foreground/70 text-sm leading-relaxed whitespace-pre-wrap bg-[#f8f9fb] rounded-lg p-4 border border-border/30">
+                      {inq.message}
+                    </p>
                     {inq.is_read && (
-                      <div className="flex items-center gap-1.5 mt-4 text-white/15 text-xs">
+                      <div className="flex items-center gap-1.5 mt-3 text-muted-foreground/50 text-xs">
                         <Eye className="w-3 h-3" /> Sudah dibaca
                       </div>
                     )}

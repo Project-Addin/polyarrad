@@ -1,5 +1,6 @@
 import AnimatedSection from "./AnimatedSection";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import facilityImage from "@/assets/facility-warehouse.jpg";
 
 export default function LocationSection() {
   return (
@@ -15,6 +16,24 @@ export default function LocationSection() {
             <h2 className="text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.1] max-w-lg mx-auto">
               Kunjungi <span className="text-gradient">kantor kami</span>
             </h2>
+          </div>
+        </AnimatedSection>
+
+        {/* Facility image strip */}
+        <AnimatedSection>
+          <div className="relative rounded-xl overflow-hidden aspect-[21/9] mb-12">
+            <img
+              src={facilityImage}
+              alt="Gudang penyimpanan bahan kimia ARRAD Chemicals"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, transparent 40%, hsl(var(--background) / 0.6) 100%)",
+              }}
+            />
           </div>
         </AnimatedSection>
 
@@ -38,8 +57,10 @@ export default function LocationSection() {
           {/* Info */}
           <AnimatedSection delay={150}>
             <div className="bg-secondary/40 rounded-2xl border border-border/60 p-8 md:p-10 h-full flex flex-col justify-center">
-              <h3 className="text-xl font-bold text-foreground mb-8">PT. Poly Arrad Pusaka</h3>
-              
+              <h3 className="text-xl font-bold text-foreground mb-8">
+                PT. Poly Arrad Pusaka
+              </h3>
+
               <div className="space-y-7">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-lg bg-ocean/8 flex items-center justify-center flex-shrink-0">
@@ -48,7 +69,8 @@ export default function LocationSection() {
                   <div>
                     <p className="text-[13px] font-semibold text-foreground/60 uppercase tracking-wider mb-1">Alamat</p>
                     <p className="text-foreground/80 text-[15px] leading-[1.7]">
-                      Jl. Rungkut Industri III No. 18-20,<br />
+                      Jl. Rungkut Industri III No. 18-20,
+                      <br />
                       Surabaya 60293, Jawa Timur, Indonesia
                     </p>
                   </div>

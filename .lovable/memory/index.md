@@ -11,7 +11,8 @@ Updated: now
 - **Style**: Clean premium industrial, bright sections, white cards, subtle borders
 - **Buttons**: rounded-lg (not pill), ocean-blue primary, outline secondary, proper spacing
 - **Navbar**: transparent → white/90 on scroll with color-aware text
-- **Sections**: Hero(dark) → BrandIntro → WhyArrad → Industries(light-blue) → Products → Services → Treatment(light-blue) → VisionMission → Certs → Location(map) → Contact → Footer(dark)
-- **Components**: AnimatedSection, StatCounter, LocationSection (Google Maps embed)
+- **Hero**: Split layout — left text, right Spline 3D embed (desktop), ambient glow fallback (mobile)
+- **Sections**: Hero(dark) → BrandIntro → WhyArrad → Industries(light-blue) → Products → Services → Treatment(light-blue) → Facility → VisionMission → Certs → Location(map+address) → Contact → Footer(dark)
+- **Components**: AnimatedSection, StatCounter, FacilitySection (warehouse image), LocationSection (map only, no warehouse image)
 - **Backend**: Lovable Cloud — contact_inquiries table, admin auth, RLS policies
 - **Admin**: /admin/login, /admin — role-based (app_role enum)

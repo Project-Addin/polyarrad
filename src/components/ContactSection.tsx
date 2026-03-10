@@ -3,22 +3,81 @@ import AnimatedSection from "./AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, ArrowRight } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { MapPin, Phone, Mail, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+const inquirySchema = z.object({
+  full_name: z.string().trim().min(1, "Nama wajib diisi").max(100),
+  company_name: z.string().trim().min(1, "Perusahaan wajib diisi").max(200),
+  email: z.string().trim().email("Format email tidak valid").max(255),
+  phone: z.string().trim().max(30).optional().or(z.literal("")),
+  subject: z.string().trim().max(200).optional().or(z.literal("")),
+  message: z.string().trim().min(1, "Pesan wajib diisi").max(2000),
+});
+
+type InquiryForm = z.infer<typeof inquirySchema>;
 
 export default function ContactSection() {
-  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof InquiryForm, string>>>({});
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(null);
+    setFieldErrors({});
+    setSuccess(false);
+
+    const formData = new FormData(e.currentTarget);
+    const raw = {
+      full_name: formData.get("full_name") as string,
+      company_name: formData.get("company_name") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string,
+      subject: formData.get("subject") as string,
+      message: formData.get("message") as string,
+    };
+
+    const result = inquirySchema.safeParse(raw);
+    if (!result.success) {
+      const errs: Partial<Record<keyof InquiryForm, string>> = {};
+      result.error.issues.forEach((issue) => {
+        const field = issue.path[0] as keyof InquiryForm;
+        if (!errs[field]) errs[field] = issue.message;
+      });
+      setFieldErrors(errs);
+      return;
+    }
+
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      toast({ title: "Pesan Terkirim!", description: "Tim kami akan menghubungi Anda segera." });
+    try {
+      const { error: dbError } = await supabase
+        .from("contact_inquiries")
+        .insert({
+          full_name: result.data.full_name,
+          company_name: result.data.company_name,
+          email: result.data.email,
+          phone: result.data.phone || null,
+          subject: result.data.subject || null,
+          message: result.data.message,
+        });
+
+      if (dbError) throw dbError;
+
+      setSuccess(true);
       (e.target as HTMLFormElement).reset();
-    }, 1000);
+      setTimeout(() => setSuccess(false), 5000);
+    } catch {
+      setError("Gagal mengirim pesan. Silakan coba lagi.");
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const inputClass = "bg-white/[0.03] border-white/[0.06] text-white placeholder:text-white/15 focus-visible:ring-ocean/30 focus-visible:border-ocean/20 h-11 text-[14px]";
+  const labelClass = "text-[11px] text-white/25 mb-2 block font-medium tracking-[0.15em] uppercase";
 
   return (
     <section id="kontak" className="py-28 md:py-40 bg-navy relative overflow-hidden">
@@ -40,7 +99,6 @@ export default function ContactSection() {
         </AnimatedSection>
 
         <div className="grid lg:grid-cols-5 gap-8 max-w-6xl">
-          {/* Info */}
           <AnimatedSection className="lg:col-span-2">
             <div className="space-y-8">
               <h3 className="text-lg font-bold text-white">PT. Poly Arrad Pusaka</h3>
@@ -67,32 +125,52 @@ export default function ContactSection() {
             </div>
           </AnimatedSection>
 
-          {/* Form */}
           <AnimatedSection className="lg:col-span-3" delay={150}>
             <form onSubmit={handleSubmit} className="glass-panel-strong rounded-2xl p-8 md:p-10 space-y-5">
+              {success && (
+                <div className="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                  <p className="text-emerald-300 text-[14px]">Pesan Anda berhasil terkirim! Tim kami akan segera menghubungi Anda.</p>
+                </div>
+              )}
+              {error && (
+                <div className="flex items-center gap-3 bg-destructive/10 border border-destructive/20 rounded-xl p-4">
+                  <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0" />
+                  <p className="text-destructive text-[14px]">{error}</p>
+                </div>
+              )}
+
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[11px] text-white/25 mb-2 block font-medium tracking-[0.15em] uppercase">Nama Lengkap</label>
-                  <Input required placeholder="Nama Anda" className="bg-white/[0.03] border-white/[0.06] text-white placeholder:text-white/15 focus-visible:ring-ocean/30 focus-visible:border-ocean/20 h-11 text-[14px]" />
+                  <label className={labelClass}>Nama Lengkap *</label>
+                  <Input name="full_name" required placeholder="Nama Anda" className={inputClass} />
+                  {fieldErrors.full_name && <p className="text-destructive text-xs mt-1">{fieldErrors.full_name}</p>}
                 </div>
                 <div>
-                  <label className="text-[11px] text-white/25 mb-2 block font-medium tracking-[0.15em] uppercase">Perusahaan</label>
-                  <Input required placeholder="Nama Perusahaan" className="bg-white/[0.03] border-white/[0.06] text-white placeholder:text-white/15 focus-visible:ring-ocean/30 focus-visible:border-ocean/20 h-11 text-[14px]" />
+                  <label className={labelClass}>Perusahaan *</label>
+                  <Input name="company_name" required placeholder="Nama Perusahaan" className={inputClass} />
+                  {fieldErrors.company_name && <p className="text-destructive text-xs mt-1">{fieldErrors.company_name}</p>}
                 </div>
               </div>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[11px] text-white/25 mb-2 block font-medium tracking-[0.15em] uppercase">Email</label>
-                  <Input required type="email" placeholder="email@perusahaan.com" className="bg-white/[0.03] border-white/[0.06] text-white placeholder:text-white/15 focus-visible:ring-ocean/30 focus-visible:border-ocean/20 h-11 text-[14px]" />
+                  <label className={labelClass}>Email *</label>
+                  <Input name="email" type="email" required placeholder="email@perusahaan.com" className={inputClass} />
+                  {fieldErrors.email && <p className="text-destructive text-xs mt-1">{fieldErrors.email}</p>}
                 </div>
                 <div>
-                  <label className="text-[11px] text-white/25 mb-2 block font-medium tracking-[0.15em] uppercase">Telepon</label>
-                  <Input placeholder="+62 xxx xxxx xxxx" className="bg-white/[0.03] border-white/[0.06] text-white placeholder:text-white/15 focus-visible:ring-ocean/30 focus-visible:border-ocean/20 h-11 text-[14px]" />
+                  <label className={labelClass}>Telepon</label>
+                  <Input name="phone" placeholder="+62 xxx xxxx xxxx" className={inputClass} />
                 </div>
               </div>
               <div>
-                <label className="text-[11px] text-white/25 mb-2 block font-medium tracking-[0.15em] uppercase">Pesan</label>
-                <Textarea required rows={4} placeholder="Ceritakan kebutuhan pengolahan air Anda..." className="bg-white/[0.03] border-white/[0.06] text-white placeholder:text-white/15 focus-visible:ring-ocean/30 focus-visible:border-ocean/20 resize-none text-[14px]" />
+                <label className={labelClass}>Subjek</label>
+                <Input name="subject" placeholder="Topik pertanyaan Anda" className={inputClass} />
+              </div>
+              <div>
+                <label className={labelClass}>Pesan *</label>
+                <Textarea name="message" required rows={4} placeholder="Ceritakan kebutuhan pengolahan air Anda..." className="bg-white/[0.03] border-white/[0.06] text-white placeholder:text-white/15 focus-visible:ring-ocean/30 focus-visible:border-ocean/20 resize-none text-[14px]" />
+                {fieldErrors.message && <p className="text-destructive text-xs mt-1">{fieldErrors.message}</p>}
               </div>
               <Button
                 type="submit"

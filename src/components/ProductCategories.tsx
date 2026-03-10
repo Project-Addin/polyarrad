@@ -1,119 +1,100 @@
 import { useState } from "react";
 import AnimatedSection from "./AnimatedSection";
-import { Droplets, Waves, Flame, Wind, Filter, Trash2, BarChart3, ChevronDown } from "lucide-react";
+import { Droplets, Waves, Flame, Wind, Filter, Trash2, BarChart3, ArrowRight } from "lucide-react";
 
 const products = [
   {
-    icon: Droplets,
-    title: "Influent",
+    icon: Droplets, title: "Influent",
     summary: "Kimia pengolahan air baku untuk sistem klarifikasi, pelunakan, desalinasi, dan reverse osmosis.",
     items: ["Coagulant", "Flocculant", "Antiscalant", "Antifoam"],
-    apps: "Clarifier, Softening, Desalinasi, RO System",
   },
   {
-    icon: Waves,
-    title: "Effluent",
+    icon: Waves, title: "Effluent",
     summary: "Solusi treatment air buangan untuk klarifikasi dan proses dewatering lumpur.",
     items: ["Coagulant", "Flocculant"],
-    apps: "Clarifier, Sludge Dewatering",
   },
   {
-    icon: Flame,
-    title: "Boiler",
+    icon: Flame, title: "Boiler",
     summary: "Kimia perawatan boiler untuk tekanan rendah, menengah, dan tinggi.",
     items: ["Oxygen Scavenger", "Internal Treatment", "Condensate Treatment"],
-    apps: "High / Medium / Low Pressure Boiler",
   },
   {
-    icon: Wind,
-    title: "Cooling",
+    icon: Wind, title: "Cooling",
     summary: "Inhibitor korosi, kerak, dan kontrol mikrobiologi untuk sistem pendingin.",
     items: ["Corrosion Inhibitor", "Scale Inhibitor", "Microbiological Control"],
-    apps: "Open & Closed Cooling System",
   },
   {
-    icon: Filter,
-    title: "Reverse Osmosis",
+    icon: Filter, title: "Reverse Osmosis",
     summary: "Treatment lengkap untuk membran RO air laut maupun air payau.",
-    items: ["Antiscalant", "Dechlorine", "Biocide", "Acid Cleaner", "Alkaline Cleaner", "Membrane"],
-    apps: "Sea Water RO, Brackish Water RO",
+    items: ["Antiscalant", "Dechlorine", "Biocide", "Membrane"],
   },
   {
-    icon: Trash2,
-    title: "Waste Water",
+    icon: Trash2, title: "Waste Water",
     summary: "Kimia pengolahan air limbah untuk berbagai jenis industri.",
-    items: ["Organic Coagulant", "Inorganic Coagulant", "Anionic Flocculant", "Cationic Flocculant", "Antifoam"],
-    apps: "Industrial Waste Water Treatment",
+    items: ["Organic Coagulant", "Inorganic Coagulant", "Flocculant", "Antifoam"],
   },
   {
-    icon: BarChart3,
-    title: "Commodity Trading",
+    icon: BarChart3, title: "Commodity Trading",
     summary: "Perdagangan komoditas pendukung operasional industri.",
-    items: ["Membrane", "Sulfur", "Quicklime & Limestone", "Coal", "Nickel"],
-    apps: "Industrial Supply Chain",
+    items: ["Membrane", "Sulfur", "Quicklime", "Coal", "Nickel"],
   },
 ];
 
 export default function ProductCategories() {
-  const [expanded, setExpanded] = useState<number | null>(null);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section id="produk" className="py-32 md:py-40 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/15 to-background" />
-      
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
+    <section id="produk" className="py-28 md:py-40 relative">
+      <div className="container mx-auto px-6 md:px-10">
         <AnimatedSection>
-          <div className="text-center max-w-2xl mx-auto mb-20">
-            <span className="text-[11px] font-bold text-aqua tracking-[0.25em] uppercase mb-6 block">Produk</span>
-            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold text-foreground leading-tight mb-5">
-              Kategori <span className="text-gradient">Produk Unggulan</span>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-8 h-px bg-ocean/40" />
+            <span className="section-label">Produk</span>
+          </div>
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16 md:mb-20 gap-6">
+            <h2 className="text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.1] max-w-lg">
+              Kategori <span className="text-gradient">produk unggulan</span>
             </h2>
-            <div className="section-divider mb-6" />
-            <p className="text-muted-foreground text-[17px]">
-              Tujuh lini produk kimia spesialti yang dirancang untuk memenuhi setiap kebutuhan pengolahan air industri Anda.
+            <p className="text-muted-foreground text-[16px] leading-relaxed max-w-md">
+              Tujuh lini produk kimia spesialti untuk memenuhi setiap kebutuhan pengolahan air industri Anda.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {products.map((p, i) => {
-            const isExpanded = expanded === i;
-            return (
-              <AnimatedSection key={p.title} delay={i * 70}>
-                <div
-                  className={`group p-7 lg:p-8 rounded-2xl bg-card border transition-all duration-500 cursor-pointer hover:-translate-y-1 relative overflow-hidden ${
-                    isExpanded ? "border-ocean/25 card-premium-hover" : "border-border/80 card-premium hover:border-ocean/15 hover:shadow-lg hover:shadow-ocean/[0.05]"
-                  }`}
-                  onClick={() => setExpanded(isExpanded ? null : i)}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-ocean/[0.01] to-aqua/[0.015] opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-                  <div className="relative z-10">
-                    <div className="flex items-start justify-between mb-5">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-ocean/10 to-aqua/8 flex items-center justify-center group-hover:shadow-md group-hover:shadow-ocean/8 transition-all duration-400">
-                        <p.icon className="w-6 h-6 text-ocean group-hover:text-aqua transition-colors duration-300" />
-                      </div>
-                      <ChevronDown className={`w-4 h-4 text-muted-foreground/50 transition-transform duration-400 ${isExpanded ? "rotate-180 text-aqua" : ""}`} />
-                    </div>
-                    <h3 className="text-lg font-bold text-foreground mb-2 tracking-tight">{p.title}</h3>
-                    <p className="text-[14px] text-muted-foreground leading-[1.7]">{p.summary}</p>
-
-                    <div className={`overflow-hidden transition-all duration-500 ${isExpanded ? "max-h-60 opacity-100 mt-5" : "max-h-0 opacity-0"}`}>
-                      <div className="pt-5 border-t border-border/50">
-                        <p className="text-[10px] font-bold text-ocean uppercase tracking-[0.15em] mb-2.5">Produk</p>
-                        <div className="flex flex-wrap gap-1.5 mb-4">
-                          {p.items.map((item) => (
-                            <span key={item} className="text-[12px] px-3 py-1 rounded-full bg-secondary text-secondary-foreground font-medium">{item}</span>
-                          ))}
-                        </div>
-                        <p className="text-[10px] font-bold text-ocean uppercase tracking-[0.15em] mb-1.5">Aplikasi</p>
-                        <p className="text-[13px] text-muted-foreground">{p.apps}</p>
-                      </div>
-                    </div>
+        <div className="border-t border-border/60">
+          {products.map((p, i) => (
+            <AnimatedSection key={p.title} delay={i * 50}>
+              <div
+                className="group grid grid-cols-12 gap-4 md:gap-8 py-8 md:py-10 border-b border-border/60 items-center cursor-pointer transition-all duration-400 hover:bg-secondary/20 -mx-4 px-4 md:-mx-6 md:px-6"
+                onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+              >
+                <div className="col-span-1 hidden md:block">
+                  <span className="text-[12px] font-medium text-muted-foreground/40">0{i + 1}</span>
+                </div>
+                <div className="col-span-12 md:col-span-3 flex items-center gap-4">
+                  <p.icon className={`w-5 h-5 transition-colors duration-400 ${hovered === i ? 'text-ocean' : 'text-muted-foreground/30'}`} />
+                  <h3 className="text-lg md:text-xl font-bold text-foreground tracking-tight">{p.title}</h3>
+                </div>
+                <div className="col-span-12 md:col-span-4">
+                  <p className="text-[14px] text-muted-foreground leading-relaxed">{p.summary}</p>
+                </div>
+                <div className="col-span-12 md:col-span-3">
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.items.slice(0, 3).map((item) => (
+                      <span key={item} className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-muted-foreground font-medium">{item}</span>
+                    ))}
+                    {p.items.length > 3 && (
+                      <span className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-muted-foreground/50 font-medium">+{p.items.length - 3}</span>
+                    )}
                   </div>
                 </div>
-              </AnimatedSection>
-            );
-          })}
+                <div className="col-span-12 md:col-span-1 hidden md:flex justify-end">
+                  <ArrowRight className={`w-4 h-4 transition-all duration-400 ${hovered === i ? 'text-ocean translate-x-0 opacity-100' : 'text-muted-foreground/20 -translate-x-2 opacity-0'}`} />
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
         </div>
       </div>
     </section>

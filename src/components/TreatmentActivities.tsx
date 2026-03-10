@@ -12,39 +12,31 @@ const activities = [
 
 export default function TreatmentActivities() {
   return (
-    <section className="py-32 md:py-40 bg-navy relative overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.02]" style={{
+    <section className="py-28 md:py-40 bg-navy relative overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.015]" style={{
         backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--aqua)) 0.5px, transparent 0)`,
-        backgroundSize: '40px 40px'
+        backgroundSize: '48px 48px'
       }} />
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-ocean/6 rounded-full blur-[180px]" />
+      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-ocean/4 rounded-full blur-[200px]" />
 
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
+      <div className="container mx-auto px-6 md:px-10 relative z-10">
         <AnimatedSection>
-          <div className="text-center max-w-2xl mx-auto mb-20">
-            <span className="text-[11px] font-bold text-aqua tracking-[0.25em] uppercase mb-6 block">Aktivitas Treatment</span>
-            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold text-white leading-tight mb-5">
-              Implementasi <span className="text-gradient">di Lapangan</span>
-            </h2>
-            <div className="section-divider mb-6" />
-            <p className="text-white/40 text-[17px]">
-              Pengalaman nyata dalam pelaksanaan treatment, penanganan kimia, dan dukungan operasional di berbagai lokasi industri.
-            </p>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-8 h-px bg-aqua/40" />
+            <span className="text-[11px] font-semibold text-aqua/50 tracking-[0.2em] uppercase">Aktivitas Treatment</span>
           </div>
+          <h2 className="text-3xl md:text-[2.75rem] font-bold text-white leading-[1.1] mb-16 md:mb-20 max-w-lg">
+            Implementasi <span className="text-gradient">di lapangan</span>
+          </h2>
         </AnimatedSection>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.04] rounded-2xl overflow-hidden">
           {activities.map((a, i) => (
-            <AnimatedSection key={a.title} delay={i * 80}>
-              <div className="group glass-card rounded-2xl p-8 hover:border-aqua/20 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-aqua/[0.04] relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-ocean/[0.015] to-aqua/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-                <div className="relative z-10">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-ocean/15 to-aqua/10 flex items-center justify-center mb-6 group-hover:shadow-md group-hover:shadow-aqua/8 transition-all duration-400">
-                    <a.icon className="w-5 h-5 text-aqua/60 group-hover:text-aqua transition-colors duration-300" />
-                  </div>
-                  <h3 className="text-[17px] font-bold text-white mb-2 tracking-tight">{a.title}</h3>
-                  <p className="text-white/35 text-[14px] leading-[1.7]">{a.desc}</p>
-                </div>
+            <AnimatedSection key={a.title} delay={i * 70}>
+              <div className="group p-9 bg-navy hover:bg-navy-light transition-all duration-500">
+                <a.icon className="w-5 h-5 text-white/15 mb-6 group-hover:text-aqua/50 transition-colors duration-400" />
+                <h3 className="text-[15px] font-bold text-white/60 group-hover:text-white transition-colors mb-2">{a.title}</h3>
+                <p className="text-white/20 group-hover:text-white/35 text-[13px] leading-[1.75] transition-colors duration-400">{a.desc}</p>
               </div>
             </AnimatedSection>
           ))}

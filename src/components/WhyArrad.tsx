@@ -4,61 +4,65 @@ import { Brain, Settings2, ShieldCheck, HeadsetIcon } from "lucide-react";
 const values = [
   {
     icon: Brain,
-    num: "01",
     title: "Technical Expertise",
-    desc: "Tim ahli kimia dan insinyur berpengalaman yang memahami setiap aspek sistem pengolahan air industri secara mendalam.",
+    desc: "Tim ahli kimia dan insinyur berpengalaman yang memahami setiap aspek sistem pengolahan air industri.",
   },
   {
     icon: Settings2,
-    num: "02",
     title: "Customized Programs",
-    desc: "Program treatment yang dirancang khusus berdasarkan analisis kondisi dan kebutuhan spesifik setiap sistem klien.",
+    desc: "Program treatment dirancang khusus berdasarkan analisis kondisi dan kebutuhan spesifik setiap sistem.",
   },
   {
     icon: ShieldCheck,
-    num: "03",
     title: "Quality Assurance",
-    desc: "Produk spesialti bermutu tinggi dengan quality control ketat dari laboratorium hingga aplikasi di lapangan.",
+    desc: "Produk bermutu tinggi dengan quality control ketat dari laboratorium hingga aplikasi di lapangan.",
   },
   {
     icon: HeadsetIcon,
-    num: "04",
     title: "On-site Support",
-    desc: "Dukungan teknis langsung di lokasi — dari survei awal, implementasi program, hingga evaluasi berkelanjutan.",
+    desc: "Dukungan teknis langsung di lokasi — dari survei awal, implementasi, hingga evaluasi berkelanjutan.",
   },
 ];
 
 export default function WhyArrad() {
   return (
-    <section className="py-28 md:py-40 relative bg-secondary/30">
-      <div className="container mx-auto px-6 md:px-10">
+    <section className="py-20 md:py-32 relative bg-navy overflow-hidden">
+      {/* Subtle ambient */}
+      <div className="absolute bottom-0 left-[20%] w-[500px] h-[500px] bg-ocean/4 rounded-full blur-[200px]" />
+
+      <div className="container mx-auto px-6 md:px-10 relative z-10">
         <AnimatedSection>
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-8 h-px bg-ocean/40" />
-            <span className="section-label">Keunggulan</span>
-          </div>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16 md:mb-20 gap-6">
-            <h2 className="text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.1] max-w-lg">
-              Mengapa <span className="text-gradient">ARRAD Chemicals</span>
-            </h2>
-            <p className="text-muted-foreground text-[16px] leading-relaxed max-w-md">
-              Empat pilar keunggulan yang menjadikan kami mitra terpercaya dalam pengolahan air industri.
-            </p>
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
+            {/* Left — large header */}
+            <div className="lg:col-span-2 lg:sticky lg:top-32 lg:self-start">
+              <span className="text-aqua/40 text-[11px] font-semibold tracking-[0.25em] uppercase block mb-6">Keunggulan</span>
+              <h2 className="text-3xl md:text-[2.5rem] font-bold text-white leading-[1.12] mb-6">
+                Mengapa memilih{" "}
+                <span className="text-gradient">ARRAD</span>
+              </h2>
+              <p className="text-white/25 text-[15px] leading-[1.8] max-w-sm">
+                Empat pilar keunggulan yang menjadikan kami mitra terpercaya dalam pengolahan air industri.
+              </p>
+            </div>
+
+            {/* Right — stacked cards */}
+            <div className="lg:col-span-3 flex flex-col gap-4">
+              {values.map((v, i) => (
+                <AnimatedSection key={v.title} delay={i * 100}>
+                  <div className="group flex items-start gap-6 p-7 md:p-8 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.04] hover:border-white/[0.08] transition-all duration-500">
+                    <div className="w-10 h-10 rounded-lg bg-white/[0.04] flex items-center justify-center flex-shrink-0 group-hover:bg-ocean/10 transition-colors duration-500">
+                      <v.icon className="w-5 h-5 text-white/20 group-hover:text-aqua/70 transition-colors duration-500" />
+                    </div>
+                    <div>
+                      <h3 className="text-[15px] font-bold text-white/80 mb-1.5 group-hover:text-white transition-colors duration-500">{v.title}</h3>
+                      <p className="text-white/20 group-hover:text-white/35 leading-[1.7] text-[14px] transition-colors duration-500">{v.desc}</p>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
           </div>
         </AnimatedSection>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 rounded-2xl overflow-hidden border border-border/50">
-          {values.map((v, i) => (
-            <AnimatedSection key={v.title} delay={i * 80}>
-              <div className="group h-full p-8 lg:p-10 bg-card hover:bg-secondary/40 transition-all duration-500 relative">
-                <span className="text-[11px] font-semibold text-muted-foreground/40 tracking-wider mb-8 block">{v.num}</span>
-                <v.icon className="w-6 h-6 text-ocean mb-6 group-hover:text-aqua transition-colors duration-400" />
-                <h3 className="text-[16px] font-bold text-foreground mb-3">{v.title}</h3>
-                <p className="text-muted-foreground leading-[1.75] text-[14px]">{v.desc}</p>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
       </div>
     </section>
   );

@@ -12,21 +12,22 @@ const activities = [
 
 export default function TreatmentActivities() {
   return (
-    <section className="py-28 md:py-36 bg-navy relative overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.025]" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--aqua)) 1px, transparent 0)`,
-        backgroundSize: '36px 36px'
+    <section className="py-32 md:py-40 bg-navy relative overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--aqua)) 0.5px, transparent 0)`,
+        backgroundSize: '40px 40px'
       }} />
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-ocean/8 rounded-full blur-[150px]" />
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-ocean/6 rounded-full blur-[180px]" />
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <AnimatedSection>
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <span className="text-xs font-bold text-aqua tracking-[0.2em] uppercase mb-5 block">Aktivitas Treatment</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6">
+          <div className="text-center max-w-2xl mx-auto mb-20">
+            <span className="text-[11px] font-bold text-aqua tracking-[0.25em] uppercase mb-6 block">Aktivitas Treatment</span>
+            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold text-white leading-tight mb-5">
               Implementasi <span className="text-gradient">di Lapangan</span>
             </h2>
-            <p className="text-lg text-white/45">
+            <div className="section-divider mb-6" />
+            <p className="text-white/40 text-[17px]">
               Pengalaman nyata dalam pelaksanaan treatment, penanganan kimia, dan dukungan operasional di berbagai lokasi industri.
             </p>
           </div>
@@ -34,15 +35,15 @@ export default function TreatmentActivities() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {activities.map((a, i) => (
-            <AnimatedSection key={a.title} delay={i * 100}>
-              <div className="group glass-card rounded-2xl p-8 hover:border-aqua/25 transition-all duration-700 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-aqua/[0.05] relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-ocean/[0.02] to-aqua/[0.03] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <AnimatedSection key={a.title} delay={i * 80}>
+              <div className="group glass-card rounded-2xl p-8 hover:border-aqua/20 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-aqua/[0.04] relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-ocean/[0.015] to-aqua/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
                 <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-ocean/20 to-aqua/15 flex items-center justify-center mb-6 group-hover:from-ocean/30 group-hover:to-aqua/25 group-hover:shadow-lg group-hover:shadow-aqua/10 transition-all duration-500">
-                    <a.icon className="w-6 h-6 text-aqua/70 group-hover:text-aqua transition-colors duration-300" />
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-ocean/15 to-aqua/10 flex items-center justify-center mb-6 group-hover:shadow-md group-hover:shadow-aqua/8 transition-all duration-400">
+                    <a.icon className="w-5 h-5 text-aqua/60 group-hover:text-aqua transition-colors duration-300" />
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">{a.title}</h3>
-                  <p className="text-white/45 text-sm leading-relaxed">{a.desc}</p>
+                  <h3 className="text-[17px] font-bold text-white mb-2 tracking-tight">{a.title}</h3>
+                  <p className="text-white/35 text-[14px] leading-[1.7]">{a.desc}</p>
                 </div>
               </div>
             </AnimatedSection>

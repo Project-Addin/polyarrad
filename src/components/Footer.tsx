@@ -25,7 +25,8 @@ export default function Footer() {
               <span className="text-white/60 font-light text-[12px] tracking-[0.15em] uppercase">Chemicals</span>
             </div>
             <p className="text-white/50 text-[13px] leading-[1.75]">
-              Produsen dan penyedia kimia spesialti terdepan untuk pengolahan air dan air limbah di Indonesia sejak 1998.
+              Produsen dan penyedia kimia spesialitas terdepan untuk pengolahan air dan air limbah di Indonesia sejak
+              1998.
             </p>
           </div>
 
@@ -77,7 +78,9 @@ export default function Footer() {
 
       <div className="border-t border-white/[0.06]">
         <div className="container mx-auto px-6 md:px-10 py-5 flex flex-col sm:flex-row justify-between items-center gap-2">
-          <p className="text-white/30 text-[12px]">&copy; {new Date().getFullYear()} PT. Poly Arrad Pusaka. All rights reserved.</p>
+          <p className="text-white/30 text-[12px]">
+            &copy; {new Date().getFullYear()} PT. Poly Arrad Pusaka. All rights reserved.
+          </p>
           <p className="text-white/20 text-[11px] tracking-wider uppercase">ARRAD Chemicals</p>
         </div>
       </div>

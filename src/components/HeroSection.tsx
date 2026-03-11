@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <section
       id="beranda"
-      className="relative h-[100svh] md:min-h-[100svh] flex flex-col items-center justify-start overflow-hidden"
+      className="relative min-h-[auto] md:h-[100svh] md:min-h-[100svh] flex flex-col items-center justify-start overflow-hidden"
       style={{ background: "linear-gradient(180deg, hsl(var(--navy)) 0%, hsl(216 50% 10%) 50%, hsl(216 42% 14%) 100%)" }}
     >
       {/* Subtle ambient glows */}
@@ -26,7 +26,7 @@ export default function HeroSection() {
       />
 
       {/* Content — high z-index, always on top */}
-      <div className="relative z-20 text-center px-5 sm:px-6 md:px-10 pt-24 pb-6 sm:pt-24 md:pt-24 md:pb-10 max-w-4xl mx-auto">
+      <div className="relative z-20 text-center px-5 sm:px-6 md:px-10 pt-24 pb-32 sm:pt-24 md:pt-24 md:pb-10 max-w-4xl mx-auto">
         <div className="flex items-center justify-center gap-2.5 sm:gap-3 mb-5 sm:mb-6 animate-reveal-up">
           <div className="section-rule" />
           <span className="text-white/60 text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] sm:tracking-[0.2em] uppercase">
@@ -115,7 +115,7 @@ export default function HeroSection() {
 
       {/* 3D Globe — mobile: absolutely positioned behind content, clipped to hero bounds */}
       <div
-        className="md:hidden absolute bottom-0 left-1/2 -translate-x-1/2 w-[140vw] h-[45vh] pointer-events-none opacity-40"
+        className="md:hidden absolute bottom-0 left-1/2 -translate-x-1/2 w-[140vw] h-[200px] pointer-events-none opacity-30"
         style={{ zIndex: 2 }}
       >
         {/* Ambient glow behind globe */}

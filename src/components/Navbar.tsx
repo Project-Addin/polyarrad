@@ -41,7 +41,7 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               className={`px-4 py-2 text-[13px] font-medium transition-colors duration-300 tracking-wide ${
-                scrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/40 hover:text-white'
+                scrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/70 hover:text-white'
               }`}
             >
               {l.label}

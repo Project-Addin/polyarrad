@@ -47,7 +47,7 @@ export default function HeroSection() {
         </h1>
 
         <p
-          className="text-[15px] md:text-[17px] text-white/40 max-w-lg mx-auto mb-8 leading-[1.75] font-light animate-reveal-up"
+          className="text-[15px] md:text-[17px] text-white/60 max-w-lg mx-auto mb-8 leading-[1.75] font-light animate-reveal-up"
           style={{ animationDelay: "0.2s" }}
         >
           Produsen dan distributor bahan kimia spesialti untuk sistem

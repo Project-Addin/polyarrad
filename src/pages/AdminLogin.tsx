@@ -19,8 +19,8 @@ export default function AdminLogin() {
     });
   }, []);
 
-  const checkAdminAndRedirect = async (userId: string) => {
-    const { data } = await supabase.rpc("has_role", { _user_id: userId, _role: "admin" });
+  const checkAdminAndRedirect = async () => {
+    const { data } = await supabase.rpc("has_role", { _role: "admin" });
     if (data) navigate("/admin", { replace: true });
   };
 

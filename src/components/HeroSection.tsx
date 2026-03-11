@@ -32,10 +32,12 @@ export default function HeroSection() {
       {/* Content: split layout */}
       {/* Spline 3D globe — cropped right side accent */}
       <div
-        className="absolute top-1/2 -translate-y-1/2 -right-[12%] w-[65vw] h-[110vh] max-w-[1100px] pointer-events-none hidden lg:block"
+        className="absolute -bottom-[35%] -right-[20%] w-[85vw] h-[130vh] max-w-[1400px] pointer-events-none hidden lg:block"
         style={{ zIndex: 1 }}
       >
-        <div className="absolute inset-0 rounded-full blur-[120px] animate-pulse-soft" style={{ background: "hsl(var(--ocean) / 0.08)" }} />
+        {/* Atmospheric glow to blend globe into background */}
+        <div className="absolute inset-0 rounded-full blur-[200px] animate-pulse-soft" style={{ background: "hsl(var(--ocean) / 0.10)" }} />
+        <div className="absolute top-[10%] left-[15%] w-[60%] h-[60%] rounded-full blur-[160px]" style={{ background: "hsl(var(--navy) / 0.9)" }} />
         <iframe
           src="https://my.spline.design/holographicearthwithdynamiclines-YD0112HYpPLXTNpDwu6Gh3iB/"
           frameBorder="0"
@@ -46,6 +48,14 @@ export default function HeroSection() {
           loading="lazy"
           style={{ clipPath: "inset(0 0 0 0)" }}
         />
+        {/* Top-left fade to blend into hero background */}
+        <div className="absolute inset-0 z-20 pointer-events-none" style={{
+          background: "linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(var(--navy) / 0.7) 25%, transparent 50%)"
+        }} />
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-[40%] z-20 pointer-events-none" style={{
+          background: "linear-gradient(to top, hsl(var(--navy)) 0%, transparent 100%)"
+        }} />
       </div>
 
       {/* Content */}

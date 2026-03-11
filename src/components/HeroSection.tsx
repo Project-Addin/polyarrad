@@ -29,7 +29,7 @@ export default function HeroSection() {
       <div className="relative z-10 text-center px-6 md:px-10 pt-20 pb-8 md:pt-24 md:pb-10 max-w-4xl mx-auto">
         <div className="flex items-center justify-center gap-3 mb-6 animate-reveal-up">
           <div className="section-rule" />
-          <span className="text-white/40 text-[11px] font-semibold tracking-[0.2em] uppercase">
+          <span className="text-white/60 text-[11px] font-semibold tracking-[0.2em] uppercase">
             Water Treatment Chemicals
           </span>
           <div className="section-rule" />
@@ -47,7 +47,7 @@ export default function HeroSection() {
         </h1>
 
         <p
-          className="text-[15px] md:text-[17px] text-white/40 max-w-lg mx-auto mb-8 leading-[1.75] font-light animate-reveal-up"
+          className="text-[15px] md:text-[17px] text-white/60 max-w-lg mx-auto mb-8 leading-[1.75] font-light animate-reveal-up"
           style={{ animationDelay: "0.2s" }}
         >
           Produsen dan distributor bahan kimia spesialti untuk sistem
@@ -71,7 +71,7 @@ export default function HeroSection() {
           <Button
             size="lg"
             variant="outline"
-            className="border-white/10 text-white/50 hover:text-white/80 hover:bg-white/[0.04] hover:border-white/20 font-medium text-[13px] px-7 h-12 bg-transparent transition-all duration-300 rounded-lg"
+            className="border-white/25 text-white/80 hover:text-white hover:bg-white/[0.08] hover:border-white/40 font-semibold text-[13px] px-7 h-12 bg-white/[0.04] transition-all duration-300 rounded-lg"
             onClick={() =>
               document.getElementById("produk")?.scrollIntoView({ behavior: "smooth" })
             }

@@ -15,7 +15,7 @@ export default function AdminLogin() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) checkAdminAndRedirect(session.user.id);
+      if (session) checkAdminAndRedirect();
     });
   }, []);
 

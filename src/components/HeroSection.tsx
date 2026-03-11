@@ -115,7 +115,7 @@ export default function HeroSection() {
 
       {/* 3D Globe — mobile: absolutely positioned behind content, clipped to hero bounds */}
       <div
-        className="md:hidden absolute bottom-0 left-1/2 -translate-x-1/2 w-[140vw] h-[45vh] pointer-events-none opacity-40"
+        className="md:hidden absolute bottom-0 left-1/2 -translate-x-1/2 w-[140vw] h-[200px] pointer-events-none opacity-30"
         style={{ zIndex: 2 }}
       >
         {/* Ambient glow behind globe */}

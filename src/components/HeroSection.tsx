@@ -26,7 +26,7 @@ export default function HeroSection() {
       />
 
       {/* Content — high z-index, always on top */}
-      <div className="relative z-20 text-center px-5 sm:px-6 md:px-10 pt-24 pb-6 sm:pt-24 md:pt-24 md:pb-10 max-w-4xl mx-auto">
+      <div className="relative z-20 text-center px-5 sm:px-6 md:px-10 pt-24 pb-32 sm:pt-24 md:pt-24 md:pb-10 max-w-4xl mx-auto">
         <div className="flex items-center justify-center gap-2.5 sm:gap-3 mb-5 sm:mb-6 animate-reveal-up">
           <div className="section-rule" />
           <span className="text-white/60 text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] sm:tracking-[0.2em] uppercase">

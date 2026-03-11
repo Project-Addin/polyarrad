@@ -111,7 +111,6 @@ export default function HeroSection() {
         <div className="absolute inset-0 rounded-full blur-[80px] animate-pulse-soft" style={{ background: "hsl(var(--ocean) / 0.12)" }} />
         <div className="absolute inset-[15%] rounded-full border border-ocean/15" style={{ background: "radial-gradient(circle, hsl(var(--ocean) / 0.06) 0%, transparent 70%)" }} />
       </div>
-      </div>
 
       {/* Clean dark bottom transition */}
       <div

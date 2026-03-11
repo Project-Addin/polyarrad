@@ -32,7 +32,7 @@ export default function Navbar() {
       <nav className="container mx-auto flex items-center justify-between px-6 md:px-10 h-16 md:h-20">
         <a href="#beranda" className="flex items-center gap-3 group">
           <span className={`font-bold text-lg tracking-tight transition-colors duration-500 ${scrolled ? 'text-foreground' : 'text-white'}`}>ARRAD</span>
-          <span className={`font-light text-[13px] tracking-[0.15em] uppercase transition-colors duration-500 ${scrolled ? 'text-muted-foreground' : 'text-white/25'}`}>Chemicals</span>
+          <span className={`font-light text-[13px] tracking-[0.15em] uppercase transition-colors duration-500 ${scrolled ? 'text-muted-foreground' : 'text-white/60'}`}>Chemicals</span>
         </a>
 
         <div className="hidden lg:flex items-center gap-1">

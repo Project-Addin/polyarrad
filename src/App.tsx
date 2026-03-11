@@ -8,6 +8,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminForgotPassword from "./pages/AdminForgotPassword";
 import AdminResetPassword from "./pages/AdminResetPassword";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminSettings from "./pages/AdminSettings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();

@@ -5,13 +5,13 @@ export default function HeroSection() {
   return (
     <section
       id="beranda"
-      className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-[100vh] flex flex-col items-center justify-start overflow-hidden"
       style={{ background: "linear-gradient(180deg, hsl(var(--navy)) 0%, hsl(216 50% 10%) 50%, hsl(216 42% 14%) 100%)" }}
     >
       {/* Subtle ambient glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full blur-[200px] animate-pulse-soft"
+          className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full blur-[200px] animate-pulse-soft"
           style={{ background: "hsl(var(--ocean) / 0.06)" }}
         />
       </div>
@@ -25,9 +25,9 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Content — centered above the globe */}
-      <div className="relative z-10 text-center px-6 md:px-10 pt-28 pb-12 md:pt-32 md:pb-16 max-w-3xl mx-auto">
-        <div className="flex items-center justify-center gap-3 mb-8 animate-reveal-up">
+      {/* Content — higher placement, tighter spacing */}
+      <div className="relative z-10 text-center px-6 md:px-10 pt-20 pb-8 md:pt-24 md:pb-10 max-w-4xl mx-auto">
+        <div className="flex items-center justify-center gap-3 mb-6 animate-reveal-up">
           <div className="section-rule" />
           <span className="text-white/40 text-[11px] font-semibold tracking-[0.2em] uppercase">
             Water Treatment Chemicals
@@ -36,7 +36,7 @@ export default function HeroSection() {
         </div>
 
         <h1
-          className="text-[2.5rem] sm:text-[3.25rem] md:text-[4rem] lg:text-[4.5rem] font-bold text-white leading-[0.96] mb-7 animate-reveal-up"
+          className="text-[3rem] sm:text-[3.75rem] md:text-[5rem] lg:text-[5.5rem] font-bold text-white leading-[0.93] mb-5 animate-reveal-up"
           style={{ animationDelay: "0.1s" }}
         >
           Solusi Kimia
@@ -47,7 +47,7 @@ export default function HeroSection() {
         </h1>
 
         <p
-          className="text-[16px] md:text-[17px] text-white/40 max-w-lg mx-auto mb-12 leading-[1.75] font-light animate-reveal-up"
+          className="text-[15px] md:text-[17px] text-white/40 max-w-lg mx-auto mb-8 leading-[1.75] font-light animate-reveal-up"
           style={{ animationDelay: "0.2s" }}
         >
           Produsen dan distributor bahan kimia spesialti untuk sistem
@@ -82,20 +82,20 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* 3D Globe — centered, bottom-anchored, top half visible */}
+      {/* 3D Globe — larger, filling more of the lower hero */}
       <div
-        className="absolute bottom-[-55%] left-1/2 -translate-x-1/2 w-[130vw] h-[110vh] max-w-[1800px] pointer-events-none hidden md:block"
+        className="absolute bottom-[-45%] left-1/2 -translate-x-1/2 w-[160vw] h-[120vh] max-w-[2200px] pointer-events-none hidden md:block"
         style={{ zIndex: 1 }}
       >
         {/* Atmospheric glow behind globe */}
         <div
-          className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[60%] h-[40%] rounded-full blur-[180px] animate-pulse-soft"
-          style={{ background: "hsl(var(--ocean) / 0.10)" }}
+          className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[55%] h-[35%] rounded-full blur-[200px] animate-pulse-soft"
+          style={{ background: "hsl(var(--ocean) / 0.12)" }}
         />
         {/* Dark center blend */}
         <div
-          className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[50%] h-[50%] rounded-full blur-[160px]"
-          style={{ background: "hsl(var(--navy) / 0.85)" }}
+          className="absolute top-[8%] left-1/2 -translate-x-1/2 w-[45%] h-[45%] rounded-full blur-[180px]"
+          style={{ background: "hsl(var(--navy) / 0.80)" }}
         />
         <iframe
           src="https://my.spline.design/holographicearthwithdynamiclines-YD0112HYpPLXTNpDwu6Gh3iB/"
@@ -108,19 +108,19 @@ export default function HeroSection() {
           style={{ clipPath: "inset(0 0 0 0)" }}
         />
         {/* Top fade — blends globe top edge into hero */}
-        <div className="absolute top-0 left-0 right-0 h-[35%] z-20 pointer-events-none" style={{
-          background: "linear-gradient(to bottom, hsl(var(--navy)) 0%, hsl(var(--navy) / 0.6) 50%, transparent 100%)"
+        <div className="absolute top-0 left-0 right-0 h-[30%] z-20 pointer-events-none" style={{
+          background: "linear-gradient(to bottom, hsl(var(--navy)) 0%, hsl(var(--navy) / 0.5) 50%, transparent 100%)"
         }} />
-        {/* Side fades */}
+        {/* Side fades — tighter to show more globe */}
         <div className="absolute inset-0 z-20 pointer-events-none" style={{
-          background: "linear-gradient(90deg, hsl(var(--navy)) 0%, transparent 20%, transparent 80%, hsl(var(--navy)) 100%)"
+          background: "linear-gradient(90deg, hsl(var(--navy)) 0%, transparent 15%, transparent 85%, hsl(var(--navy)) 100%)"
         }} />
       </div>
 
-      {/* Mobile fallback — subtle glow instead of 3D */}
-      <div className="md:hidden absolute bottom-0 left-1/2 -translate-x-1/2 w-[90vw] h-[40vh] pointer-events-none" style={{ zIndex: 1 }}>
+      {/* Mobile fallback */}
+      <div className="md:hidden absolute bottom-0 left-1/2 -translate-x-1/2 w-[95vw] h-[45vh] pointer-events-none" style={{ zIndex: 1 }}>
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-full rounded-t-full blur-[60px] animate-pulse-soft" style={{ background: "hsl(var(--ocean) / 0.10)" }} />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[80%] rounded-t-full border border-ocean/10" style={{ background: "radial-gradient(ellipse at center bottom, hsl(var(--ocean) / 0.06) 0%, transparent 70%)" }} />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[85%] h-[85%] rounded-t-full border border-ocean/10" style={{ background: "radial-gradient(ellipse at center bottom, hsl(var(--ocean) / 0.06) 0%, transparent 70%)" }} />
       </div>
 
       {/* Bottom transition */}

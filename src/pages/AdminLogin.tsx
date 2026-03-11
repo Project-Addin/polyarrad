@@ -33,7 +33,7 @@ export default function AdminLogin() {
       const { data, error: authError } = await supabase.auth.signInWithPassword({ email, password });
       if (authError) throw authError;
 
-      const { data: isAdmin } = await supabase.rpc("has_role", { _user_id: data.user.id, _role: "admin" });
+      const { data: isAdmin } = await supabase.rpc("has_role", { _role: "admin" });
       if (!isAdmin) {
         await supabase.auth.signOut();
         setError("Akun Anda tidak memiliki akses admin.");

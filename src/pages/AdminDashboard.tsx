@@ -35,16 +35,20 @@ export default function AdminDashboard() {
   const [adminEmail, setAdminEmail] = useState("");
 
   useEffect(() => {
-    checkAuth();
-    fetchInquiries();
+    const init = async () => {
+      const authed = await checkAuth();
+      if (authed) fetchInquiries();
+    };
+    init();
   }, []);
 
-  const checkAuth = async () => {
+  const checkAuth = async (): Promise<boolean> => {
     const { data: { session } } = await supabase.auth.getSession();
-    if (!session) { navigate("/admin/login", { replace: true }); return; }
+    if (!session) { navigate("/admin/login", { replace: true }); return false; }
     setAdminEmail(session.user.email || "");
-    const { data: isAdmin } = await supabase.rpc("has_role", { _user_id: session.user.id, _role: "admin" });
-    if (!isAdmin) { await supabase.auth.signOut(); navigate("/admin/login", { replace: true }); }
+    const { data: isAdmin } = await supabase.rpc("has_role", { _role: "admin" });
+    if (!isAdmin) { await supabase.auth.signOut(); navigate("/admin/login", { replace: true }); return false; }
+    return true;
   };
 
   const fetchInquiries = async () => {

@@ -63,7 +63,7 @@ export default function Navbar() {
           </Button>
         </div>
 
-        <button className={`lg:hidden p-2 transition-colors ${scrolled ? 'text-foreground' : 'text-white/60 hover:text-white'}`} onClick={() => setOpen(!open)}>
+        <button className={`lg:hidden p-2 transition-colors ${scrolled ? 'text-foreground' : 'text-white/80 hover:text-white'}`} onClick={() => setOpen(!open)}>
           {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </nav>

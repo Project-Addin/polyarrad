@@ -71,7 +71,7 @@ export default function HeroSection() {
           <Button
             size="lg"
             variant="outline"
-            className="border-white/10 text-white/50 hover:text-white/80 hover:bg-white/[0.04] hover:border-white/20 font-medium text-[13px] px-7 h-12 bg-transparent transition-all duration-300 rounded-lg"
+            className="border-white/25 text-white/80 hover:text-white hover:bg-white/[0.08] hover:border-white/40 font-semibold text-[13px] px-7 h-12 bg-white/[0.04] transition-all duration-300 rounded-lg"
             onClick={() =>
               document.getElementById("produk")?.scrollIntoView({ behavior: "smooth" })
             }

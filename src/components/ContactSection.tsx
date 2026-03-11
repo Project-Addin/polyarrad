@@ -80,44 +80,44 @@ export default function ContactSection() {
     }
   };
 
-  const inputClass = "bg-background border-border text-foreground placeholder:text-muted-foreground/40 focus-visible:ring-ocean/30 focus-visible:border-ocean/30 h-11 text-[14px]";
-  const labelClass = "text-[12px] text-muted-foreground mb-2 block font-medium tracking-wide";
+  const inputClass = "bg-background border-border text-foreground placeholder:text-muted-foreground/40 focus-visible:ring-ocean/30 focus-visible:border-ocean/30 h-11 text-[13px] sm:text-[14px]";
+  const labelClass = "text-[11px] sm:text-[12px] text-muted-foreground mb-1.5 sm:mb-2 block font-medium tracking-wide";
 
   return (
-    <section id="kontak" className="py-28 md:py-40 bg-secondary/30 relative overflow-hidden">
-      <div className="container mx-auto px-6 md:px-10 relative z-10">
+    <section id="kontak" className="py-16 sm:py-28 md:py-40 bg-secondary/30 relative overflow-hidden">
+      <div className="container mx-auto px-5 sm:px-6 md:px-10 relative z-10">
         <AnimatedSection>
-          <div className="text-center mb-16 md:mb-20">
-            <div className="flex items-center justify-center gap-3 mb-8">
+          <div className="text-center mb-10 sm:mb-16 md:mb-20">
+            <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
               <div className="w-8 h-px bg-ocean/40" />
               <span className="section-label">Hubungi Kami</span>
               <div className="w-8 h-px bg-ocean/40" />
             </div>
-            <h2 className="text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.1] max-w-lg mx-auto">
+            <h2 className="text-[1.75rem] sm:text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.15] sm:leading-[1.1] max-w-lg mx-auto">
               Konsultasikan kebutuhan <span className="text-gradient">Anda</span>
             </h2>
-            <p className="text-muted-foreground text-[16px] mt-4 max-w-md mx-auto">
+            <p className="text-muted-foreground text-[14px] sm:text-[16px] mt-3 sm:mt-4 max-w-md mx-auto">
               Isi formulir di bawah dan tim kami akan menghubungi Anda dalam 1×24 jam kerja.
             </p>
           </div>
         </AnimatedSection>
 
         <AnimatedSection delay={100}>
-          <form onSubmit={handleSubmit} className="bg-card rounded-2xl border border-border/60 p-8 md:p-12 space-y-6 max-w-3xl mx-auto shadow-sm">
+          <form onSubmit={handleSubmit} className="bg-card rounded-2xl border border-border/60 p-5 sm:p-8 md:p-12 space-y-5 sm:space-y-6 max-w-3xl mx-auto shadow-sm">
             {success && (
-              <div className="flex items-center gap-3 bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+              <div className="flex items-center gap-3 bg-emerald-50 border border-emerald-200 rounded-xl p-3 sm:p-4">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                <p className="text-emerald-700 text-[14px]">Pesan Anda berhasil terkirim! Tim kami akan segera menghubungi Anda.</p>
+                <p className="text-emerald-700 text-[13px] sm:text-[14px]">Pesan Anda berhasil terkirim! Tim kami akan segera menghubungi Anda.</p>
               </div>
             )}
             {error && (
-              <div className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-xl p-4">
+              <div className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-xl p-3 sm:p-4">
                 <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0" />
-                <p className="text-destructive text-[14px]">{error}</p>
+                <p className="text-destructive text-[13px] sm:text-[14px]">{error}</p>
               </div>
             )}
 
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
               <div>
                 <label className={labelClass}>Nama Lengkap *</label>
                 <Input name="full_name" required placeholder="Nama Anda" className={inputClass} />
@@ -129,7 +129,7 @@ export default function ContactSection() {
                 {fieldErrors.company_name && <p className="text-destructive text-xs mt-1">{fieldErrors.company_name}</p>}
               </div>
             </div>
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
               <div>
                 <label className={labelClass}>Email *</label>
                 <Input name="email" type="email" required placeholder="email@perusahaan.com" className={inputClass} />
@@ -146,13 +146,13 @@ export default function ContactSection() {
             </div>
             <div>
               <label className={labelClass}>Pesan *</label>
-              <Textarea name="message" required rows={5} placeholder="Ceritakan kebutuhan pengolahan air Anda..." className="bg-background border-border text-foreground placeholder:text-muted-foreground/40 focus-visible:ring-ocean/30 focus-visible:border-ocean/30 resize-none text-[14px]" />
+              <Textarea name="message" required rows={4} placeholder="Ceritakan kebutuhan pengolahan air Anda..." className="bg-background border-border text-foreground placeholder:text-muted-foreground/40 focus-visible:ring-ocean/30 focus-visible:border-ocean/30 resize-none text-[13px] sm:text-[14px]" />
               {fieldErrors.message && <p className="text-destructive text-xs mt-1">{fieldErrors.message}</p>}
             </div>
             <Button
               type="submit"
               disabled={loading}
-              className="w-full bg-ocean text-white font-semibold h-12 hover:bg-ocean/90 transition-all duration-300 border-0 text-[14px] rounded-lg shadow-md shadow-ocean/15"
+              className="w-full bg-ocean text-white font-semibold h-12 hover:bg-ocean/90 transition-all duration-300 border-0 text-[13px] sm:text-[14px] rounded-lg shadow-md shadow-ocean/15"
             >
               {loading ? "Mengirim..." : (
                 <span className="flex items-center gap-2">

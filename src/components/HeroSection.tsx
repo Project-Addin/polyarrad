@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <section
       id="beranda"
-      className="relative min-h-[100svh] flex flex-col items-center justify-start overflow-hidden"
+      className="relative h-[100svh] md:min-h-[100svh] flex flex-col items-center justify-start overflow-hidden"
       style={{ background: "linear-gradient(180deg, hsl(var(--navy)) 0%, hsl(216 50% 10%) 50%, hsl(216 42% 14%) 100%)" }}
     >
       {/* Subtle ambient glows */}
@@ -25,8 +25,8 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-5 sm:px-6 md:px-10 pt-24 pb-6 sm:pt-24 md:pt-24 md:pb-10 max-w-4xl mx-auto">
+      {/* Content — high z-index, always on top */}
+      <div className="relative z-20 text-center px-5 sm:px-6 md:px-10 pt-24 pb-6 sm:pt-24 md:pt-24 md:pb-10 max-w-4xl mx-auto">
         <div className="flex items-center justify-center gap-2.5 sm:gap-3 mb-5 sm:mb-6 animate-reveal-up">
           <div className="section-rule" />
           <span className="text-white/60 text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] sm:tracking-[0.2em] uppercase">
@@ -113,18 +113,15 @@ export default function HeroSection() {
         }} />
       </div>
 
-      {/* 3D Globe — mobile (smaller, positioned at bottom) */}
+      {/* 3D Globe — mobile: absolutely positioned behind content, clipped to hero bounds */}
       <div
-        className="md:hidden absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[200vw] h-[55vh] pointer-events-none"
-        style={{ zIndex: 1 }}
+        className="md:hidden absolute bottom-0 left-1/2 -translate-x-1/2 w-[140vw] h-[45vh] pointer-events-none opacity-40"
+        style={{ zIndex: 2 }}
       >
+        {/* Ambient glow behind globe */}
         <div
-          className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[60%] h-[30%] rounded-full blur-[100px] animate-pulse-soft"
+          className="absolute top-[0%] left-1/2 -translate-x-1/2 w-[70%] h-[40%] rounded-full blur-[80px] animate-pulse-soft"
           style={{ background: "hsl(var(--ocean) / 0.10)" }}
-        />
-        <div
-          className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[50%] h-[40%] rounded-full blur-[80px]"
-          style={{ background: "hsl(var(--navy) / 0.85)" }}
         />
         <iframe
           src="https://my.spline.design/holographicearthwithdynamiclines-YD0112HYpPLXTNpDwu6Gh3iB/"
@@ -134,14 +131,15 @@ export default function HeroSection() {
           className="relative z-10"
           title="ARRAD 3D Visual Mobile"
           loading="lazy"
-          style={{ clipPath: "inset(0 0 0 0)" }}
+          style={{ clipPath: "inset(0 0 50% 0)" }}
         />
-        {/* Fade edges on mobile */}
-        <div className="absolute top-0 left-0 right-0 h-[40%] z-20 pointer-events-none" style={{
-          background: "linear-gradient(to bottom, hsl(var(--navy)) 0%, hsl(var(--navy) / 0.6) 50%, transparent 100%)"
+        {/* Top fade — blends globe into hero content */}
+        <div className="absolute top-0 left-0 right-0 h-[50%] z-20 pointer-events-none" style={{
+          background: "linear-gradient(to bottom, hsl(var(--navy)) 0%, hsl(var(--navy) / 0.4) 60%, transparent 100%)"
         }} />
+        {/* Side fades */}
         <div className="absolute inset-0 z-20 pointer-events-none" style={{
-          background: "linear-gradient(90deg, hsl(var(--navy)) 0%, transparent 20%, transparent 80%, hsl(var(--navy)) 100%)"
+          background: "linear-gradient(90deg, hsl(var(--navy)) 0%, transparent 25%, transparent 75%, hsl(var(--navy)) 100%)"
         }} />
       </div>
 

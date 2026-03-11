@@ -29,7 +29,7 @@ export default function HeroSection() {
       <div className="relative z-10 text-center px-6 md:px-10 pt-20 pb-8 md:pt-24 md:pb-10 max-w-4xl mx-auto">
         <div className="flex items-center justify-center gap-3 mb-6 animate-reveal-up">
           <div className="section-rule" />
-          <span className="text-white/40 text-[11px] font-semibold tracking-[0.2em] uppercase">
+          <span className="text-white/60 text-[11px] font-semibold tracking-[0.2em] uppercase">
             Water Treatment Chemicals
           </span>
           <div className="section-rule" />

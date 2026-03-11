@@ -2,7 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { LogOut, Mail, Building2, Phone, Clock, Eye, ChevronDown, ChevronUp, Inbox } from "lucide-react";
+import { LogOut, Mail, Building2, Phone, Clock, Eye, ChevronDown, ChevronUp, Inbox, Settings, User } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface Inquiry {
   id: string;

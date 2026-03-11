@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <section
       id="beranda"
-      className="relative h-[100svh] md:min-h-[100svh] flex flex-col items-center justify-start overflow-hidden"
+      className="relative min-h-[auto] md:h-[100svh] md:min-h-[100svh] flex flex-col items-center justify-start overflow-hidden"
       style={{ background: "linear-gradient(180deg, hsl(var(--navy)) 0%, hsl(216 50% 10%) 50%, hsl(216 42% 14%) 100%)" }}
     >
       {/* Subtle ambient glows */}

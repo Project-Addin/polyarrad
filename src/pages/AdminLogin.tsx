@@ -15,12 +15,12 @@ export default function AdminLogin() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) checkAdminAndRedirect(session.user.id);
+      if (session) checkAdminAndRedirect();
     });
   }, []);
 
-  const checkAdminAndRedirect = async (userId: string) => {
-    const { data } = await supabase.rpc("has_role", { _user_id: userId, _role: "admin" });
+  const checkAdminAndRedirect = async () => {
+    const { data } = await supabase.rpc("has_role", { _role: "admin" });
     if (data) navigate("/admin", { replace: true });
   };
 
@@ -33,7 +33,7 @@ export default function AdminLogin() {
       const { data, error: authError } = await supabase.auth.signInWithPassword({ email, password });
       if (authError) throw authError;
 
-      const { data: isAdmin } = await supabase.rpc("has_role", { _user_id: data.user.id, _role: "admin" });
+      const { data: isAdmin } = await supabase.rpc("has_role", { _role: "admin" });
       if (!isAdmin) {
         await supabase.auth.signOut();
         setError("Akun Anda tidak memiliki akses admin.");

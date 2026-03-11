@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Anyone can submit inquiry" ON public.contact_inquiries;

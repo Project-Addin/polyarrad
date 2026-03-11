@@ -53,18 +53,22 @@ export default function ContactSection() {
 
     setLoading(true);
     try {
-      const { error: dbError } = await supabase
-        .from("contact_inquiries")
-        .insert({
-          full_name: result.data.full_name,
-          company_name: result.data.company_name,
-          email: result.data.email,
-          phone: result.data.phone || null,
-          subject: result.data.subject || null,
-          message: result.data.message,
-        });
+      const { data, error: fnError } = await supabase.functions.invoke(
+        "submit-contact",
+        {
+          body: {
+            full_name: result.data.full_name,
+            company_name: result.data.company_name,
+            email: result.data.email,
+            phone: result.data.phone || null,
+            subject: result.data.subject || null,
+            message: result.data.message,
+          },
+        }
+      );
 
-      if (dbError) throw dbError;
+      if (fnError) throw fnError;
+      if (data?.error) throw new Error(data.error);
 
       setSuccess(true);
       (e.target as HTMLFormElement).reset();

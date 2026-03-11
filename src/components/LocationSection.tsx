@@ -3,25 +3,25 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export default function LocationSection() {
   return (
-    <section id="lokasi" className="py-28 md:py-40 bg-card relative">
-      <div className="container mx-auto px-6 md:px-10">
+    <section id="lokasi" className="py-16 sm:py-28 md:py-40 bg-card relative">
+      <div className="container mx-auto px-5 sm:px-6 md:px-10">
         <AnimatedSection>
-          <div className="text-center mb-16 md:mb-20">
-            <div className="flex items-center justify-center gap-3 mb-8">
+          <div className="text-center mb-10 sm:mb-16 md:mb-20">
+            <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
               <div className="w-8 h-px bg-ocean/40" />
               <span className="section-label">Lokasi Kami</span>
               <div className="w-8 h-px bg-ocean/40" />
             </div>
-            <h2 className="text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.1] max-w-lg mx-auto">
+            <h2 className="text-[1.75rem] sm:text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.15] sm:leading-[1.1] max-w-lg mx-auto">
               Kunjungi <span className="text-gradient">kantor kami</span>
             </h2>
           </div>
         </AnimatedSection>
 
-        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
           {/* Map */}
           <AnimatedSection>
-            <div className="rounded-2xl overflow-hidden border border-border/60 h-[400px] lg:h-full min-h-[400px]">
+            <div className="rounded-2xl overflow-hidden border border-border/60 h-[280px] sm:h-[350px] lg:h-full lg:min-h-[400px]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.5!2d112.77!3d-7.33!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMTknNDguMCJTIDExMsKwNDYnMTIuMCJF!5e0!3m2!1sen!2sid!4v1710000000000"
                 width="100%"
@@ -37,19 +37,19 @@ export default function LocationSection() {
 
           {/* Info */}
           <AnimatedSection delay={150}>
-            <div className="bg-secondary/40 rounded-2xl border border-border/60 p-8 md:p-10 h-full flex flex-col justify-center">
-              <h3 className="text-xl font-bold text-foreground mb-8">
+            <div className="bg-secondary/40 rounded-2xl border border-border/60 p-6 sm:p-8 md:p-10 h-full flex flex-col justify-center">
+              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-6 sm:mb-8">
                 PT. Poly Arrad Pusaka
               </h3>
 
-              <div className="space-y-7">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-ocean/8 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-ocean" />
+              <div className="space-y-5 sm:space-y-7">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-ocean/8 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-ocean" />
                   </div>
                   <div>
-                    <p className="text-[13px] font-semibold text-foreground/60 uppercase tracking-wider mb-1">Alamat</p>
-                    <p className="text-foreground/80 text-[15px] leading-[1.7]">
+                    <p className="text-[12px] sm:text-[13px] font-semibold text-foreground/60 uppercase tracking-wider mb-1">Alamat</p>
+                    <p className="text-foreground/80 text-[13px] sm:text-[15px] leading-[1.65] sm:leading-[1.7]">
                       Jl. Rungkut Industri III No. 18-20,
                       <br />
                       Surabaya 60293, Jawa Timur, Indonesia
@@ -57,35 +57,35 @@ export default function LocationSection() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-ocean/8 flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-5 h-5 text-ocean" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-ocean/8 flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-ocean" />
                   </div>
                   <div>
-                    <p className="text-[13px] font-semibold text-foreground/60 uppercase tracking-wider mb-1">Telepon</p>
-                    <p className="text-foreground/80 text-[15px]">+62 31 843 7000</p>
-                    <p className="text-muted-foreground text-[13px] mt-0.5">Fax: +62 31 843 7001</p>
+                    <p className="text-[12px] sm:text-[13px] font-semibold text-foreground/60 uppercase tracking-wider mb-1">Telepon</p>
+                    <p className="text-foreground/80 text-[13px] sm:text-[15px]">+62 31 843 7000</p>
+                    <p className="text-muted-foreground text-[12px] sm:text-[13px] mt-0.5">Fax: +62 31 843 7001</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-ocean/8 flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-5 h-5 text-ocean" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-ocean/8 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-ocean" />
                   </div>
                   <div>
-                    <p className="text-[13px] font-semibold text-foreground/60 uppercase tracking-wider mb-1">Email</p>
-                    <p className="text-foreground/80 text-[15px]">info@arradchemicals.co.id</p>
+                    <p className="text-[12px] sm:text-[13px] font-semibold text-foreground/60 uppercase tracking-wider mb-1">Email</p>
+                    <p className="text-foreground/80 text-[13px] sm:text-[15px]">info@arradchemicals.co.id</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-ocean/8 flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-5 h-5 text-ocean" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-ocean/8 flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-ocean" />
                   </div>
                   <div>
-                    <p className="text-[13px] font-semibold text-foreground/60 uppercase tracking-wider mb-1">Jam Operasional</p>
-                    <p className="text-foreground/80 text-[15px]">Senin – Jumat: 08:00 – 17:00 WIB</p>
-                    <p className="text-muted-foreground text-[13px] mt-0.5">Sabtu – Minggu: Tutup</p>
+                    <p className="text-[12px] sm:text-[13px] font-semibold text-foreground/60 uppercase tracking-wider mb-1">Jam Operasional</p>
+                    <p className="text-foreground/80 text-[13px] sm:text-[15px]">Senin – Jumat: 08:00 – 17:00 WIB</p>
+                    <p className="text-muted-foreground text-[12px] sm:text-[13px] mt-0.5">Sabtu – Minggu: Tutup</p>
                   </div>
                 </div>
               </div>

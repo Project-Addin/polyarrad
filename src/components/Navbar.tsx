@@ -29,10 +29,10 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="container mx-auto flex items-center justify-between px-6 md:px-10 h-16 md:h-20">
-        <a href="#beranda" className="flex items-center gap-3 group">
-          <span className={`font-bold text-lg tracking-tight transition-colors duration-500 ${scrolled ? 'text-foreground' : 'text-white'}`}>ARRAD</span>
-          <span className={`font-light text-[13px] tracking-[0.15em] uppercase transition-colors duration-500 ${scrolled ? 'text-muted-foreground' : 'text-white/60'}`}>Chemicals</span>
+      <nav className="container mx-auto flex items-center justify-between px-5 sm:px-6 md:px-10 h-14 sm:h-16 md:h-20">
+        <a href="#beranda" className="flex items-center gap-2.5 sm:gap-3 group">
+          <span className={`font-bold text-base sm:text-lg tracking-tight transition-colors duration-500 ${scrolled ? 'text-foreground' : 'text-white'}`}>ARRAD</span>
+          <span className={`font-light text-[11px] sm:text-[13px] tracking-[0.15em] uppercase transition-colors duration-500 ${scrolled ? 'text-muted-foreground' : 'text-white/60'}`}>Chemicals</span>
         </a>
 
         <div className="hidden lg:flex items-center gap-1">
@@ -63,7 +63,11 @@ export default function Navbar() {
           </Button>
         </div>
 
-        <button className={`lg:hidden p-2 transition-colors ${scrolled ? 'text-foreground' : 'text-white/80 hover:text-white'}`} onClick={() => setOpen(!open)}>
+        <button
+          className={`lg:hidden p-2.5 -mr-1 transition-colors ${scrolled ? 'text-foreground' : 'text-white/80 hover:text-white'}`}
+          onClick={() => setOpen(!open)}
+          aria-label="Menu"
+        >
           {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </nav>
@@ -75,13 +79,13 @@ export default function Navbar() {
           open ? "max-h-[500px] border-b border-border/20" : "max-h-0"
         }`}
       >
-        <div className="px-6 py-6 flex flex-col gap-1">
+        <div className="px-5 sm:px-6 py-5 flex flex-col gap-0.5">
           {navLinks.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className={`py-3 transition-colors font-medium text-[15px] ${
+              className={`py-3.5 px-2 rounded-lg transition-colors font-medium text-[15px] active:bg-white/5 ${
                 scrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/70 hover:text-white'
               }`}
             >
@@ -89,7 +93,7 @@ export default function Navbar() {
             </a>
           ))}
           <Button
-            className="mt-4 bg-ocean text-white font-semibold border-0 h-11 rounded-lg"
+            className="mt-4 bg-ocean text-white font-semibold border-0 h-12 rounded-lg text-[14px]"
             onClick={() => { setOpen(false); document.getElementById("kontak")?.scrollIntoView({ behavior: "smooth" }); }}
           >
             Hubungi Kami

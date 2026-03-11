@@ -30,31 +30,31 @@ const values = [
 
 export default function WhyArrad() {
   return (
-    <section className="py-28 md:py-40 relative bg-secondary/30">
-      <div className="container mx-auto px-6 md:px-10">
+    <section className="py-16 sm:py-28 md:py-40 relative bg-secondary/30">
+      <div className="container mx-auto px-5 sm:px-6 md:px-10">
         <AnimatedSection>
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-6 sm:mb-8">
             <div className="w-8 h-px bg-ocean/40" />
             <span className="section-label">Keunggulan</span>
           </div>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16 md:mb-20 gap-6">
-            <h2 className="text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.1] max-w-lg">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-10 sm:mb-16 md:mb-20 gap-4 sm:gap-6">
+            <h2 className="text-[1.75rem] sm:text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.15] sm:leading-[1.1] max-w-lg">
               Mengapa <span className="text-gradient">ARRAD Chemicals</span>
             </h2>
-            <p className="text-muted-foreground text-[16px] leading-relaxed max-w-md">
+            <p className="text-muted-foreground text-[14px] sm:text-[16px] leading-relaxed max-w-md">
               Empat pilar keunggulan yang menjadikan kami mitra terpercaya dalam pengolahan air industri.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 rounded-2xl overflow-hidden border border-border/50">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 rounded-2xl overflow-hidden border border-border/50">
           {values.map((v, i) => (
             <AnimatedSection key={v.title} delay={i * 80}>
-              <div className="group h-full p-8 lg:p-10 bg-card hover:bg-secondary/40 transition-all duration-500 relative">
-                <span className="text-[11px] font-semibold text-muted-foreground/40 tracking-wider mb-8 block">{v.num}</span>
-                <v.icon className="w-6 h-6 text-ocean mb-6 group-hover:text-aqua transition-colors duration-400" />
-                <h3 className="text-[16px] font-bold text-foreground mb-3">{v.title}</h3>
-                <p className="text-muted-foreground leading-[1.75] text-[14px]">{v.desc}</p>
+              <div className="group h-full p-7 sm:p-8 lg:p-10 bg-card hover:bg-secondary/40 transition-all duration-500 relative">
+                <span className="text-[11px] font-semibold text-muted-foreground/40 tracking-wider mb-6 sm:mb-8 block">{v.num}</span>
+                <v.icon className="w-5 h-5 sm:w-6 sm:h-6 text-ocean mb-4 sm:mb-6 group-hover:text-aqua transition-colors duration-400" />
+                <h3 className="text-[15px] sm:text-[16px] font-bold text-foreground mb-2 sm:mb-3">{v.title}</h3>
+                <p className="text-muted-foreground leading-[1.7] sm:leading-[1.75] text-[13px] sm:text-[14px]">{v.desc}</p>
               </div>
             </AnimatedSection>
           ))}

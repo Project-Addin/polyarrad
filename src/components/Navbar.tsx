@@ -82,7 +82,7 @@ export default function Navbar() {
               href={l.href}
               onClick={() => setOpen(false)}
               className={`py-3 transition-colors font-medium text-[15px] ${
-                scrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/50 hover:text-white'
+                scrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/70 hover:text-white'
               }`}
             >
               {l.label}

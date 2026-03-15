@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navLinks = [
-  { label: "Tentang", href: "#tentang" },
-  { label: "Industri", href: "#industri" },
-  { label: "Produk", href: "#produk" },
-  { label: "Layanan", href: "#layanan" },
-  { label: "Sertifikasi", href: "#sertifikasi" },
-  { label: "Kontak", href: "#kontak" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const navLinks = [
+    { label: t("nav.about"), href: "#tentang" },
+    { label: t("nav.industries"), href: "#industri" },
+    { label: t("nav.products"), href: "#produk" },
+    { label: t("nav.services"), href: "#layanan" },
+    { label: t("nav.certifications"), href: "#sertifikasi" },
+    { label: t("nav.contact"), href: "#kontak" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -49,7 +52,8 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden lg:flex items-center">
+        <div className="hidden lg:flex items-center gap-3">
+          <LanguageSwitcher scrolled={scrolled} />
           <Button
             size="sm"
             className={`font-semibold transition-all duration-300 border-0 px-6 h-9 text-[13px] tracking-wide rounded-lg ${
@@ -59,7 +63,7 @@ export default function Navbar() {
             }`}
             onClick={() => document.getElementById("kontak")?.scrollIntoView({ behavior: "smooth" })}
           >
-            Hubungi Kami
+            {t("nav.cta")}
           </Button>
         </div>
 
@@ -92,11 +96,14 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
+          <div className="mt-3 mb-2 px-2">
+            <LanguageSwitcher scrolled={scrolled} />
+          </div>
           <Button
-            className="mt-4 bg-ocean text-white font-semibold border-0 h-12 rounded-lg text-[14px]"
+            className="mt-2 bg-ocean text-white font-semibold border-0 h-12 rounded-lg text-[14px]"
             onClick={() => { setOpen(false); document.getElementById("kontak")?.scrollIntoView({ behavior: "smooth" }); }}
           >
-            Hubungi Kami
+            {t("nav.cta")}
           </Button>
         </div>
       </div>

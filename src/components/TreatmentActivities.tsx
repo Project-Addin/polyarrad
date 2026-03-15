@@ -1,26 +1,29 @@
 import AnimatedSection from "./AnimatedSection";
 import { TestTubes, Pipette, HardHat, Wrench, Truck, Settings } from "lucide-react";
-
-const activities = [
-  { icon: TestTubes, title: "Analisis Laboratorium", desc: "Pengujian sampel air dan bahan kimia untuk memastikan kualitas treatment sesuai standar." },
-  { icon: Pipette, title: "Dosing & Chemical Handling", desc: "Implementasi sistem dosing dan penanganan kimia yang aman dan efisien di lapangan." },
-  { icon: HardHat, title: "Site Support", desc: "Pendampingan teknis langsung di lokasi untuk commissioning, troubleshooting, dan optimasi." },
-  { icon: Wrench, title: "Perawatan Sistem", desc: "Maintenance berkala pada peralatan treatment untuk menjaga performa dan umur pakai." },
-  { icon: Truck, title: "Logistik & Supply", desc: "Pengelolaan rantai pasok kimia dari gudang hingga titik penggunaan dengan tepat waktu." },
-  { icon: Settings, title: "Optimasi Proses", desc: "Evaluasi dan peningkatan berkelanjutan terhadap efisiensi sistem pengolahan air." },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function TreatmentActivities() {
+  const { t } = useLanguage();
+
+  const activities = [
+    { icon: TestTubes, title: t("treat.lab.title"), desc: t("treat.lab.desc") },
+    { icon: Pipette, title: t("treat.dosing.title"), desc: t("treat.dosing.desc") },
+    { icon: HardHat, title: t("treat.site.title"), desc: t("treat.site.desc") },
+    { icon: Wrench, title: t("treat.maint.title"), desc: t("treat.maint.desc") },
+    { icon: Truck, title: t("treat.supply.title"), desc: t("treat.supply.desc") },
+    { icon: Settings, title: t("treat.optim.title"), desc: t("treat.optim.desc") },
+  ];
+
   return (
     <section className="py-16 sm:py-28 md:py-40 bg-light-blue relative overflow-hidden">
       <div className="container mx-auto px-5 sm:px-6 md:px-10 relative z-10">
         <AnimatedSection>
           <div className="flex items-center gap-3 mb-6 sm:mb-8">
             <div className="w-8 h-px bg-ocean/40" />
-            <span className="section-label">Aktivitas Treatment</span>
+            <span className="section-label">{t("treat.label")}</span>
           </div>
           <h2 className="text-[1.75rem] sm:text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.15] sm:leading-[1.1] mb-10 sm:mb-16 md:mb-20 max-w-lg">
-            Implementasi <span className="text-gradient">di lapangan</span>
+            {t("treat.h2.pre")} <span className="text-gradient">{t("treat.h2.highlight")}</span>
           </h2>
         </AnimatedSection>
 

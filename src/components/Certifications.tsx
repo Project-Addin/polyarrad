@@ -1,14 +1,17 @@
 import AnimatedSection from "./AnimatedSection";
 import { Shield, CheckCircle2, Award, Leaf } from "lucide-react";
-
-const certs = [
-  { icon: Award, name: "ISO 9001:2015", desc: "Sistem manajemen mutu terakreditasi untuk proses produksi dan layanan." },
-  { icon: Shield, name: "KAN", desc: "Terakreditasi oleh Komite Akreditasi Nasional untuk jaminan mutu pengujian." },
-  { icon: CheckCircle2, name: "NSF", desc: "Sertifikasi internasional untuk produk yang memenuhi standar keamanan air." },
-  { icon: Leaf, name: "Halal Compliance", desc: "Komitmen terhadap kepatuhan halal dalam proses produksi yang relevan." },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Certifications() {
+  const { t } = useLanguage();
+
+  const certs = [
+    { icon: Award, name: "ISO 9001:2015", desc: t("cert.iso.desc") },
+    { icon: Shield, name: "KAN", desc: t("cert.kan.desc") },
+    { icon: CheckCircle2, name: "NSF", desc: t("cert.nsf.desc") },
+    { icon: Leaf, name: "Halal Compliance", desc: t("cert.halal.desc") },
+  ];
+
   return (
     <section id="sertifikasi" className="py-16 sm:py-28 md:py-40 bg-secondary/30 relative">
       <div className="container mx-auto px-5 sm:px-6 md:px-10">
@@ -16,11 +19,11 @@ export default function Certifications() {
           <div className="text-center mb-10 sm:mb-16 md:mb-20">
             <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
               <div className="w-8 h-px bg-ocean/40" />
-              <span className="section-label">Sertifikasi</span>
+              <span className="section-label">{t("cert.label")}</span>
               <div className="w-8 h-px bg-ocean/40" />
             </div>
             <h2 className="text-[1.75rem] sm:text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.15] sm:leading-[1.1] max-w-lg mx-auto">
-              Jaminan mutu & <span className="text-gradient">kepercayaan</span>
+              {t("cert.h2.pre")} <span className="text-gradient">{t("cert.h2.highlight")}</span>
             </h2>
           </div>
         </AnimatedSection>

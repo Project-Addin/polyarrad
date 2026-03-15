@@ -1,48 +1,31 @@
 import AnimatedSection from "./AnimatedSection";
 import { Brain, Settings2, ShieldCheck, HeadsetIcon } from "lucide-react";
-
-const values = [
-  {
-    icon: Brain,
-    num: "01",
-    title: "Technical Expertise",
-    desc: "Tim ahli kimia dan insinyur berpengalaman yang memahami setiap aspek sistem pengolahan air industri secara mendalam.",
-  },
-  {
-    icon: Settings2,
-    num: "02",
-    title: "Customized Programs",
-    desc: "Program treatment yang dirancang khusus berdasarkan analisis kondisi dan kebutuhan spesifik setiap sistem klien.",
-  },
-  {
-    icon: ShieldCheck,
-    num: "03",
-    title: "Quality Assurance",
-    desc: "Produk spesialti bermutu tinggi dengan quality control ketat dari laboratorium hingga aplikasi di lapangan.",
-  },
-  {
-    icon: HeadsetIcon,
-    num: "04",
-    title: "On-site Support",
-    desc: "Dukungan teknis langsung di lokasi — dari survei awal, implementasi program, hingga evaluasi berkelanjutan.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function WhyArrad() {
+  const { t } = useLanguage();
+
+  const values = [
+    { icon: Brain, num: "01", title: t("why.1.title"), desc: t("why.1.desc") },
+    { icon: Settings2, num: "02", title: t("why.2.title"), desc: t("why.2.desc") },
+    { icon: ShieldCheck, num: "03", title: t("why.3.title"), desc: t("why.3.desc") },
+    { icon: HeadsetIcon, num: "04", title: t("why.4.title"), desc: t("why.4.desc") },
+  ];
+
   return (
     <section className="py-16 sm:py-28 md:py-40 relative bg-secondary/30">
       <div className="container mx-auto px-5 sm:px-6 md:px-10">
         <AnimatedSection>
           <div className="flex items-center gap-3 mb-6 sm:mb-8">
             <div className="w-8 h-px bg-ocean/40" />
-            <span className="section-label">Keunggulan</span>
+            <span className="section-label">{t("why.label")}</span>
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-10 sm:mb-16 md:mb-20 gap-4 sm:gap-6">
             <h2 className="text-[1.75rem] sm:text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.15] sm:leading-[1.1] max-w-lg">
-              Mengapa <span className="text-gradient">ARRAD Chemicals</span>
+              {t("why.h2")} <span className="text-gradient">ARRAD Chemicals</span>
             </h2>
             <p className="text-muted-foreground text-[14px] sm:text-[16px] leading-relaxed max-w-md">
-              Empat pilar keunggulan yang menjadikan kami mitra terpercaya dalam pengolahan air industri.
+              {t("why.subtitle")}
             </p>
           </div>
         </AnimatedSection>

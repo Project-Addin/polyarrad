@@ -1,47 +1,21 @@
 import { useState } from "react";
 import AnimatedSection from "./AnimatedSection";
 import { Droplets, Waves, Flame, Wind, Filter, Trash2, BarChart3, ArrowRight } from "lucide-react";
-
-const products = [
-  {
-    icon: Droplets, title: "Influent",
-    summary: "Kimia pengolahan air baku untuk sistem klarifikasi, pelunakan, desalinasi, dan reverse osmosis.",
-    items: ["Coagulant", "Flocculant", "Antiscalant", "Antifoam"],
-  },
-  {
-    icon: Waves, title: "Effluent",
-    summary: "Solusi treatment air buangan untuk klarifikasi dan proses dewatering lumpur.",
-    items: ["Coagulant", "Flocculant"],
-  },
-  {
-    icon: Flame, title: "Boiler",
-    summary: "Kimia perawatan boiler untuk tekanan rendah, menengah, dan tinggi.",
-    items: ["Oxygen Scavenger", "Internal Treatment", "Condensate Treatment"],
-  },
-  {
-    icon: Wind, title: "Cooling",
-    summary: "Inhibitor korosi, kerak, dan kontrol mikrobiologi untuk sistem pendingin.",
-    items: ["Corrosion Inhibitor", "Scale Inhibitor", "Microbiological Control"],
-  },
-  {
-    icon: Filter, title: "Reverse Osmosis",
-    summary: "Treatment lengkap untuk membran RO air laut maupun air payau.",
-    items: ["Antiscalant", "Dechlorine", "Biocide", "Membrane"],
-  },
-  {
-    icon: Trash2, title: "Waste Water",
-    summary: "Kimia pengolahan air limbah untuk berbagai jenis industri.",
-    items: ["Organic Coagulant", "Inorganic Coagulant", "Flocculant", "Antifoam"],
-  },
-  {
-    icon: BarChart3, title: "Commodity Trading",
-    summary: "Perdagangan komoditas pendukung operasional industri.",
-    items: ["Membrane", "Sulfur", "Quicklime", "Coal", "Nickel"],
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ProductCategories() {
   const [hovered, setHovered] = useState<number | null>(null);
+  const { t } = useLanguage();
+
+  const products = [
+    { icon: Droplets, title: "Influent", summary: t("prod.influent"), items: ["Coagulant", "Flocculant", "Antiscalant", "Antifoam"] },
+    { icon: Waves, title: "Effluent", summary: t("prod.effluent"), items: ["Coagulant", "Flocculant"] },
+    { icon: Flame, title: "Boiler", summary: t("prod.boiler"), items: ["Oxygen Scavenger", "Internal Treatment", "Condensate Treatment"] },
+    { icon: Wind, title: "Cooling", summary: t("prod.cooling"), items: ["Corrosion Inhibitor", "Scale Inhibitor", "Microbiological Control"] },
+    { icon: Filter, title: "Reverse Osmosis", summary: t("prod.ro"), items: ["Antiscalant", "Dechlorine", "Biocide", "Membrane"] },
+    { icon: Trash2, title: "Waste Water", summary: t("prod.waste"), items: ["Organic Coagulant", "Inorganic Coagulant", "Flocculant", "Antifoam"] },
+    { icon: BarChart3, title: "Commodity Trading", summary: t("prod.commodity"), items: ["Membrane", "Sulfur", "Quicklime", "Coal", "Nickel"] },
+  ];
 
   return (
     <section id="produk" className="py-16 sm:py-28 md:py-40 relative">
@@ -49,14 +23,14 @@ export default function ProductCategories() {
         <AnimatedSection>
           <div className="flex items-center gap-3 mb-6 sm:mb-8">
             <div className="w-8 h-px bg-ocean/40" />
-            <span className="section-label">Produk</span>
+            <span className="section-label">{t("prod.label")}</span>
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-10 sm:mb-16 md:mb-20 gap-4 sm:gap-6">
             <h2 className="text-[1.75rem] sm:text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.15] sm:leading-[1.1] max-w-lg">
-              Kategori <span className="text-gradient">produk unggulan</span>
+              {t("prod.h2.pre")} <span className="text-gradient">{t("prod.h2.highlight")}</span>
             </h2>
             <p className="text-muted-foreground text-[14px] sm:text-[16px] leading-relaxed max-w-md">
-              Tujuh lini produk kimia spesialti untuk memenuhi setiap kebutuhan pengolahan air industri Anda.
+              {t("prod.subtitle")}
             </p>
           </div>
         </AnimatedSection>

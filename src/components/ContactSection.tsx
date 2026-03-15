@@ -6,23 +6,23 @@ import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
-
-const inquirySchema = z.object({
-  full_name: z.string().trim().min(1, "Nama wajib diisi").max(100),
-  company_name: z.string().trim().min(1, "Perusahaan wajib diisi").max(200),
-  email: z.string().trim().email("Format email tidak valid").max(255),
-  phone: z.string().trim().max(30).optional().or(z.literal("")),
-  subject: z.string().trim().max(200).optional().or(z.literal("")),
-  message: z.string().trim().min(1, "Pesan wajib diisi").max(2000),
-});
-
-type InquiryForm = z.infer<typeof inquirySchema>;
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ContactSection() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof InquiryForm, string>>>({});
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<string, string>>>({});
+  const { t } = useLanguage();
+
+  const inquirySchema = z.object({
+    full_name: z.string().trim().min(1, t("contact.name.err")).max(100),
+    company_name: z.string().trim().min(1, t("contact.company.err")).max(200),
+    email: z.string().trim().email(t("contact.email.err")).max(255),
+    phone: z.string().trim().max(30).optional().or(z.literal("")),
+    subject: z.string().trim().max(200).optional().or(z.literal("")),
+    message: z.string().trim().min(1, t("contact.msg.err")).max(2000),
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,9 +42,9 @@ export default function ContactSection() {
 
     const result = inquirySchema.safeParse(raw);
     if (!result.success) {
-      const errs: Partial<Record<keyof InquiryForm, string>> = {};
+      const errs: Partial<Record<string, string>> = {};
       result.error.issues.forEach((issue) => {
-        const field = issue.path[0] as keyof InquiryForm;
+        const field = issue.path[0] as string;
         if (!errs[field]) errs[field] = issue.message;
       });
       setFieldErrors(errs);
@@ -53,19 +53,16 @@ export default function ContactSection() {
 
     setLoading(true);
     try {
-      const { data, error: fnError } = await supabase.functions.invoke(
-        "submit-contact",
-        {
-          body: {
-            full_name: result.data.full_name,
-            company_name: result.data.company_name,
-            email: result.data.email,
-            phone: result.data.phone || null,
-            subject: result.data.subject || null,
-            message: result.data.message,
-          },
-        }
-      );
+      const { data, error: fnError } = await supabase.functions.invoke("submit-contact", {
+        body: {
+          full_name: result.data.full_name,
+          company_name: result.data.company_name,
+          email: result.data.email,
+          phone: result.data.phone || null,
+          subject: result.data.subject || null,
+          message: result.data.message,
+        },
+      });
 
       if (fnError) throw fnError;
       if (data?.error) throw new Error(data.error);
@@ -74,7 +71,7 @@ export default function ContactSection() {
       (e.target as HTMLFormElement).reset();
       setTimeout(() => setSuccess(false), 5000);
     } catch {
-      setError("Gagal mengirim pesan. Silakan coba lagi.");
+      setError(t("contact.error"));
     } finally {
       setLoading(false);
     }
@@ -90,14 +87,14 @@ export default function ContactSection() {
           <div className="text-center mb-10 sm:mb-16 md:mb-20">
             <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
               <div className="w-8 h-px bg-ocean/40" />
-              <span className="section-label">Hubungi Kami</span>
+              <span className="section-label">{t("contact.label")}</span>
               <div className="w-8 h-px bg-ocean/40" />
             </div>
             <h2 className="text-[1.75rem] sm:text-3xl md:text-[2.75rem] font-bold text-foreground leading-[1.15] sm:leading-[1.1] max-w-lg mx-auto">
-              Konsultasikan kebutuhan <span className="text-gradient">Anda</span>
+              {t("contact.h2.pre")} <span className="text-gradient">{t("contact.h2.highlight")}</span>
             </h2>
             <p className="text-muted-foreground text-[14px] sm:text-[16px] mt-3 sm:mt-4 max-w-md mx-auto">
-              Isi formulir di bawah dan tim kami akan menghubungi Anda dalam 1×24 jam kerja.
+              {t("contact.subtitle")}
             </p>
           </div>
         </AnimatedSection>
@@ -107,7 +104,7 @@ export default function ContactSection() {
             {success && (
               <div className="flex items-center gap-3 bg-emerald-50 border border-emerald-200 rounded-xl p-3 sm:p-4">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                <p className="text-emerald-700 text-[13px] sm:text-[14px]">Pesan Anda berhasil terkirim! Tim kami akan segera menghubungi Anda.</p>
+                <p className="text-emerald-700 text-[13px] sm:text-[14px]">{t("contact.success")}</p>
               </div>
             )}
             {error && (
@@ -119,13 +116,13 @@ export default function ContactSection() {
 
             <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
               <div>
-                <label className={labelClass}>Nama Lengkap *</label>
-                <Input name="full_name" required placeholder="Nama Anda" className={inputClass} />
+                <label className={labelClass}>{t("contact.name")} *</label>
+                <Input name="full_name" required placeholder={t("contact.name.ph")} className={inputClass} />
                 {fieldErrors.full_name && <p className="text-destructive text-xs mt-1">{fieldErrors.full_name}</p>}
               </div>
               <div>
-                <label className={labelClass}>Perusahaan *</label>
-                <Input name="company_name" required placeholder="Nama Perusahaan" className={inputClass} />
+                <label className={labelClass}>{t("contact.company")} *</label>
+                <Input name="company_name" required placeholder={t("contact.company.ph")} className={inputClass} />
                 {fieldErrors.company_name && <p className="text-destructive text-xs mt-1">{fieldErrors.company_name}</p>}
               </div>
             </div>
@@ -136,17 +133,17 @@ export default function ContactSection() {
                 {fieldErrors.email && <p className="text-destructive text-xs mt-1">{fieldErrors.email}</p>}
               </div>
               <div>
-                <label className={labelClass}>Telepon</label>
+                <label className={labelClass}>{t("contact.phone")}</label>
                 <Input name="phone" placeholder="+62 xxx xxxx xxxx" className={inputClass} />
               </div>
             </div>
             <div>
-              <label className={labelClass}>Subjek</label>
-              <Input name="subject" placeholder="Topik pertanyaan Anda" className={inputClass} />
+              <label className={labelClass}>{t("contact.subject")}</label>
+              <Input name="subject" placeholder={t("contact.subject.ph")} className={inputClass} />
             </div>
             <div>
-              <label className={labelClass}>Pesan *</label>
-              <Textarea name="message" required rows={4} placeholder="Ceritakan kebutuhan pengolahan air Anda..." className="bg-background border-border text-foreground placeholder:text-muted-foreground/40 focus-visible:ring-ocean/30 focus-visible:border-ocean/30 resize-none text-[13px] sm:text-[14px]" />
+              <label className={labelClass}>{t("contact.message")} *</label>
+              <Textarea name="message" required rows={4} placeholder={t("contact.message.ph")} className="bg-background border-border text-foreground placeholder:text-muted-foreground/40 focus-visible:ring-ocean/30 focus-visible:border-ocean/30 resize-none text-[13px] sm:text-[14px]" />
               {fieldErrors.message && <p className="text-destructive text-xs mt-1">{fieldErrors.message}</p>}
             </div>
             <Button
@@ -154,9 +151,9 @@ export default function ContactSection() {
               disabled={loading}
               className="w-full bg-ocean text-white font-semibold h-12 hover:bg-ocean/90 transition-all duration-300 border-0 text-[13px] sm:text-[14px] rounded-lg shadow-md shadow-ocean/15"
             >
-              {loading ? "Mengirim..." : (
+              {loading ? t("contact.sending") : (
                 <span className="flex items-center gap-2">
-                  Kirim Pesan
+                  {t("contact.submit")}
                   <ArrowRight className="w-4 h-4" />
                 </span>
               )}
